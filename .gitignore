@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+out/
+build/
+dist/
+
+# Logs
+*.log
+
+# Large video files
+*.mp4
+*.mov
+*.MOV
+*.webm
+*.avi
+public/videos/
+
+# Large images in gallery (videos)
+public/images/gallery/*.mp4
+public/images/gallery/*.MOV
+public/images/gallery/*.mov
+
+# Environment
+.env
+.env.local
+.env.production
