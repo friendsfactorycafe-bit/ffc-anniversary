@@ -43,13 +43,13 @@ export function FFCHeader() {
           {/* Logo */}
           <Link href="/" className="flex flex-col">
             <span className="text-xl md:text-2xl font-serif font-bold text-rose-700 leading-tight">
-              Anniversary
+              Friends
             </span>
             <span className="text-xl md:text-2xl font-serif font-bold text-rose-700 leading-tight">
-              Celebration
+              Factory
             </span>
-            <span className="text-sm font-medium text-rose-500 leading-tight">
-              Vadodara
+            <span className="text-xl md:text-2xl font-serif font-bold text-rose-700 leading-tight">
+              Cafe
             </span>
           </Link>
 
@@ -93,7 +93,7 @@ export function FFCHeader() {
                 <div className="flex flex-col h-full">
                   <div className="flex items-center justify-between py-4 border-b">
                     <span className="font-serif font-bold text-rose-700 text-xl">
-                      Anniversary Celebration
+                      Friends Factory Cafe
                     </span>
                   </div>
                   
@@ -151,7 +151,7 @@ export function FFCFooter() {
           {/* Brand */}
           <div>
             <h3 className="text-2xl font-serif font-bold text-rose-400 mb-4">
-              Anniversary Celebration Vadodara
+              Friends Factory Cafe
             </h3>
             <p className="text-gray-400 mb-6">
               {siteConfig.tagline}
@@ -285,7 +285,7 @@ export function FFCFooter() {
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} Anniversary Celebration Vadodara. All rights reserved.
+              © {new Date().getFullYear()} Friends Factory Cafe. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <Link href="/privacy" className="text-gray-500 hover:text-gray-300 text-sm">
