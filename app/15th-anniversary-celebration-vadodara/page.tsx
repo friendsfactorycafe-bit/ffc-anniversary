@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Phone, MessageCircle, Diamond, Star, Heart, Clock, Users, Sparkles, Gift } from 'lucide-react';
+import { packages, formatPrice } from '@/lib/anniversary-config';
 
 export const metadata: Metadata = {
   title: '15th Anniversary Celebration Vadodara | Crystal Anniversary Party',
@@ -28,56 +29,6 @@ const fifteenYearAchievements = [
   "Building a home full of memories",
   "Becoming each other's safe space",
   "15 anniversaries already celebrated"
-];
-
-const packages = [
-  {
-    name: "Crystal Clear",
-    price: "₹8,999",
-    duration: "3 hours",
-    includes: [
-      "Private decorated space",
-      "Crystal-themed décor accents",
-      "Romantic dinner for 2",
-      "Anniversary cake",
-      "Photo session",
-      "Crystal keepsake gift"
-    ]
-  },
-  {
-    name: "Sparkling Elegance",
-    price: "₹18,999",
-    duration: "4 hours",
-    guests: "Up to 15 guests",
-    includes: [
-      "Decorated celebration room",
-      "Full crystal theme setup",
-      "Welcome drinks + dinner",
-      "Designer crystal cake",
-      "Professional photography",
-      "Live acoustic music",
-      "Crystal centerpieces (yours to keep)",
-      "Champagne toast"
-    ],
-    popular: true
-  },
-  {
-    name: "Brilliant Celebration",
-    price: "₹34,999",
-    duration: "5+ hours",
-    guests: "Up to 40 guests",
-    includes: [
-      "Premium venue",
-      "Luxury crystal décor",
-      "Full catering service",
-      "Photo + video coverage",
-      "Live entertainment",
-      "Designer cake",
-      "Crystal gift for couple",
-      "Memory display setup",
-      "Complete coordination"
-    ]
-  }
 ];
 
 const crystalDecorElements = [
@@ -240,65 +191,38 @@ export default function CrystalAnniversaryPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            Crystal Anniversary Packages
+            15th Anniversary Packages
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Sparkling celebrations for your 15th milestone
+            Choose from our romantic celebration packages
           </p>
           
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
             {packages.map((pkg, index) => (
-              <div
-                key={index}
-                className={`rounded-2xl p-8 ${
-                  pkg.popular
-                    ? 'bg-gradient-to-br from-slate-700 to-slate-800 text-white ring-2 ring-blue-300'
-                    : 'bg-slate-50 border border-slate-200'
-                }`}
-              >
-                {pkg.popular && (
-                  <div className="inline-block bg-blue-400 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
-                    SPARKLING CHOICE
+              <Link key={pkg.id} href={`/packages/${pkg.slug}`}>
+                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 md:p-6 hover:shadow-lg transition-all group h-full">
+                  <div className="text-3xl mb-2">{pkg.emoji}</div>
+                  <h3 className="text-sm md:text-lg font-bold mb-1 text-slate-800 group-hover:text-blue-600 line-clamp-2">
+                    {pkg.name}
+                  </h3>
+                  <p className="text-xs md:text-sm text-slate-600 mb-2 line-clamp-2 hidden md:block">
+                    {pkg.shortDescription}
+                  </p>
+                  <div className="text-lg md:text-2xl font-bold text-slate-700">
+                    {formatPrice(pkg.price)}
                   </div>
-                )}
-                <h3 className={`text-2xl font-bold mb-2 ${pkg.popular ? 'text-white' : 'text-slate-800'}`}>
-                  {pkg.name}
-                </h3>
-                <div className={`flex items-center gap-4 mb-4 text-sm ${pkg.popular ? 'text-slate-300' : 'text-slate-500'}`}>
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    {pkg.duration}
-                  </span>
-                  {pkg.guests && (
-                    <span className="flex items-center gap-1">
-                      <Users className="w-4 h-4" />
-                      {pkg.guests}
-                    </span>
-                  )}
+                  <div className="text-xs text-slate-500 mt-1">
+                    {pkg.cakeIncluded ? '🎂 Cake included' : '🎂 +₹500'}
+                  </div>
                 </div>
-                <div className={`text-4xl font-bold mb-6 ${pkg.popular ? 'text-white' : 'text-slate-700'}`}>
-                  {pkg.price}
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {pkg.includes.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <Diamond className={`w-4 h-4 mt-1 flex-shrink-0 ${pkg.popular ? 'text-blue-300' : 'text-blue-400'}`} />
-                      <span className={pkg.popular ? 'text-slate-200' : 'text-slate-600'}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={`https://wa.me/917487888730?text=Hi! I'm interested in the "${pkg.name}" package for our 15th anniversary`}
-                  className={`block text-center py-3 rounded-full font-semibold transition-all ${
-                    pkg.popular
-                      ? 'bg-white text-slate-800 hover:bg-slate-100'
-                      : 'bg-slate-800 text-white hover:bg-slate-700'
-                  }`}
-                >
-                  Book This Package
-                </a>
-              </div>
+              </Link>
             ))}
+          </div>
+          
+          <div className="text-center mt-8">
+            <Link href="/packages" className="inline-block bg-slate-800 text-white px-8 py-3 rounded-full font-semibold hover:bg-slate-700 transition-all">
+              View All Package Details
+            </Link>
           </div>
         </div>
       </section>

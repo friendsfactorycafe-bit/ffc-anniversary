@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Phone, MessageCircle, Star, Heart, Clock, Users, Gem, Gift, Crown } from 'lucide-react';
+import { packages, formatPrice } from '@/lib/anniversary-config';
 
 export const metadata: Metadata = {
   title: '30th Anniversary Celebration Vadodara | Pearl Anniversary Party',
@@ -29,56 +30,6 @@ const threeDecadeMilestones = [
   { milestone: "Career Journeys", context: "Started and completed" },
   { milestone: "Health Challenges", context: "Faced together" },
   { milestone: "Love Deepened", context: "From romance to devotion" }
-];
-
-const packages = [
-  {
-    name: "Pearl Intimate",
-    price: "₹18,999",
-    duration: "3 hours",
-    includes: [
-      "Private decorated setup",
-      "Pearl-inspired white theme",
-      "Romantic dinner for 2",
-      "Anniversary cake",
-      "Professional photos (20)",
-      "Champagne/mocktail toast"
-    ]
-  },
-  {
-    name: "Luminous Pearl",
-    price: "₹39,999",
-    duration: "5 hours",
-    guests: "Up to 30 guests",
-    includes: [
-      "Exclusive venue booking",
-      "Pearl & ivory décor theme",
-      "Welcome drinks + dinner buffet",
-      "Designer tiered cake",
-      "Full photography coverage",
-      "Live music/entertainment",
-      "30-year memory display",
-      "Pearl gift for the lady"
-    ],
-    popular: true
-  },
-  {
-    name: "Diamond Grandeur",
-    price: "₹69,999",
-    duration: "Full evening",
-    guests: "Up to 75 guests",
-    includes: [
-      "Premium venue with décor",
-      "Luxury white & silver theme",
-      "Complete catering service",
-      "Photo + video coverage",
-      "Live band/DJ",
-      "Vow renewal ceremony option",
-      "Memory video compilation",
-      "Full event management",
-      "Premium gift hamper"
-    ]
-  }
 ];
 
 const pearlDecorElements = [
@@ -268,62 +219,35 @@ export default function ThirtiethAnniversaryPage() {
             30th Anniversary Packages
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Luminous celebrations for three beautiful decades
+            Choose from our romantic celebration packages
           </p>
           
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
             {packages.map((pkg, index) => (
-              <div
-                key={index}
-                className={`rounded-2xl p-8 ${
-                  pkg.popular
-                    ? 'bg-gradient-to-br from-slate-700 to-slate-800 text-white ring-2 ring-slate-400'
-                    : 'bg-gray-50 border border-gray-200'
-                }`}
-              >
-                {pkg.popular && (
-                  <div className="inline-block bg-white text-slate-700 text-xs font-bold px-3 py-1 rounded-full mb-4">
-                    MOST POPULAR
+              <Link key={pkg.id} href={`/packages/${pkg.slug}`}>
+                <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4 md:p-6 hover:shadow-lg transition-all group h-full">
+                  <div className="text-3xl mb-2">{pkg.emoji}</div>
+                  <h3 className="text-sm md:text-lg font-bold mb-1 text-slate-800 group-hover:text-slate-600 line-clamp-2">
+                    {pkg.name}
+                  </h3>
+                  <p className="text-xs md:text-sm text-slate-600 mb-2 line-clamp-2 hidden md:block">
+                    {pkg.shortDescription}
+                  </p>
+                  <div className="text-lg md:text-2xl font-bold text-slate-700">
+                    {formatPrice(pkg.price)}
                   </div>
-                )}
-                <h3 className={`text-2xl font-bold mb-2 ${pkg.popular ? 'text-white' : 'text-slate-800'}`}>
-                  {pkg.name}
-                </h3>
-                <div className={`flex items-center gap-4 mb-4 text-sm ${pkg.popular ? 'text-slate-300' : 'text-slate-500'}`}>
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    {pkg.duration}
-                  </span>
-                  {pkg.guests && (
-                    <span className="flex items-center gap-1">
-                      <Users className="w-4 h-4" />
-                      {pkg.guests}
-                    </span>
-                  )}
+                  <div className="text-xs text-slate-500 mt-1">
+                    {pkg.cakeIncluded ? '🎂 Cake included' : '🎂 +₹500'}
+                  </div>
                 </div>
-                <div className={`text-4xl font-bold mb-6 ${pkg.popular ? 'text-white' : 'text-slate-700'}`}>
-                  {pkg.price}
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {pkg.includes.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <Gem className={`w-4 h-4 mt-1 flex-shrink-0 ${pkg.popular ? 'text-slate-300' : 'text-slate-500'}`} />
-                      <span className={pkg.popular ? 'text-slate-200' : 'text-slate-600'}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={`https://wa.me/917487888730?text=Hi! I'm interested in the "${pkg.name}" package for our 30th anniversary`}
-                  className={`block text-center py-3 rounded-full font-semibold transition-all ${
-                    pkg.popular
-                      ? 'bg-white text-slate-700 hover:bg-gray-100'
-                      : 'bg-slate-700 text-white hover:bg-slate-800'
-                  }`}
-                >
-                  Book This Package
-                </a>
-              </div>
+              </Link>
             ))}
+          </div>
+          
+          <div className="text-center mt-8">
+            <Link href="/packages" className="inline-block bg-slate-700 text-white px-8 py-3 rounded-full font-semibold hover:bg-slate-800 transition-all">
+              View All Package Details
+            </Link>
           </div>
         </div>
       </section>

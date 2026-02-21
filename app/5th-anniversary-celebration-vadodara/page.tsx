@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Phone, MessageCircle, TreeDeciduous, Star, Heart, Clock, Users, Gift, Sparkles, Leaf } from 'lucide-react';
+import { packages, formatPrice } from '@/lib/anniversary-config';
 
 export const metadata: Metadata = {
   title: '5th Anniversary Celebration Vadodara | Wood Anniversary Party Ideas',
@@ -27,55 +28,6 @@ const fiveYearMilestones = [
   { year: 3, title: "Leather Year", achievement: "Grown tougher together" },
   { year: 4, title: "Fruit/Flowers", achievement: "Your love blossomed" },
   { year: 5, title: "Wood Year", achievement: "Built a solid foundation" }
-];
-
-const celebrationPackages = [
-  {
-    name: "Roots & Romance",
-    price: "₹5,999",
-    duration: "2.5 hours",
-    includes: [
-      "Cozy decorated corner",
-      "Rustic wooden elements",
-      "Dinner for 2",
-      "Anniversary cake",
-      "Photo keepsake",
-      "Wooden picture frame gift"
-    ]
-  },
-  {
-    name: "Growing Together",
-    price: "₹11,999",
-    duration: "4 hours",
-    includes: [
-      "Private decorated space",
-      "Wooden-themed décor",
-      "Welcome drinks",
-      "3-course dinner",
-      "Custom cake with wood design",
-      "Professional photography",
-      "Tree planting ceremony kit",
-      "Personalized wooden plaque"
-    ],
-    popular: true
-  },
-  {
-    name: "Forest of Love",
-    price: "₹21,999",
-    duration: "5+ hours",
-    guests: "Up to 20 guests",
-    includes: [
-      "Venue with rustic setup",
-      "Complete wooden theme",
-      "Cocktail + dinner",
-      "Designer cake",
-      "Photo + video coverage",
-      "Live acoustic music",
-      "Personalized wooden gifts",
-      "Memory tree activity",
-      "Full event coordination"
-    ]
-  }
 ];
 
 const woodThemedActivities = [
@@ -263,62 +215,35 @@ export default function FifthAnniversaryCelebrationPage() {
             5th Anniversary Packages
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Celebrate five years with rustic elegance
+            Choose from our romantic celebration packages
           </p>
           
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {celebrationPackages.map((pkg, index) => (
-              <div
-                key={index}
-                className={`rounded-2xl p-8 ${
-                  pkg.popular
-                    ? 'bg-gradient-to-br from-amber-700 to-amber-800 text-white ring-2 ring-amber-300'
-                    : 'bg-amber-50 border border-amber-200'
-                }`}
-              >
-                {pkg.popular && (
-                  <div className="inline-block bg-white text-amber-700 text-xs font-bold px-3 py-1 rounded-full mb-4">
-                    COUPLES' CHOICE
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
+            {packages.map((pkg, index) => (
+              <Link key={pkg.id} href={`/packages/${pkg.slug}`}>
+                <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 md:p-6 hover:shadow-lg transition-all group h-full">
+                  <div className="text-3xl mb-2">{pkg.emoji}</div>
+                  <h3 className="text-sm md:text-lg font-bold mb-1 text-amber-800 group-hover:text-amber-600 line-clamp-2">
+                    {pkg.name}
+                  </h3>
+                  <p className="text-xs md:text-sm text-amber-600 mb-2 line-clamp-2 hidden md:block">
+                    {pkg.shortDescription}
+                  </p>
+                  <div className="text-lg md:text-2xl font-bold text-amber-700">
+                    {formatPrice(pkg.price)}
                   </div>
-                )}
-                <h3 className={`text-2xl font-bold mb-2 ${pkg.popular ? 'text-white' : 'text-amber-800'}`}>
-                  {pkg.name}
-                </h3>
-                <div className={`flex items-center gap-4 mb-4 text-sm ${pkg.popular ? 'text-amber-200' : 'text-amber-600'}`}>
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    {pkg.duration}
-                  </span>
-                  {pkg.guests && (
-                    <span className="flex items-center gap-1">
-                      <Users className="w-4 h-4" />
-                      {pkg.guests}
-                    </span>
-                  )}
+                  <div className="text-xs text-amber-500 mt-1">
+                    {pkg.cakeIncluded ? '🎂 Cake included' : '🎂 +₹500'}
+                  </div>
                 </div>
-                <div className={`text-4xl font-bold mb-6 ${pkg.popular ? 'text-white' : 'text-amber-700'}`}>
-                  {pkg.price}
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {pkg.includes.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <Leaf className={`w-4 h-4 mt-1 flex-shrink-0 ${pkg.popular ? 'text-amber-300' : 'text-amber-500'}`} />
-                      <span className={pkg.popular ? 'text-amber-100' : 'text-amber-700'}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={`https://wa.me/917487888730?text=Hi! I'm interested in the "${pkg.name}" package for our 5th anniversary`}
-                  className={`block text-center py-3 rounded-full font-semibold transition-all ${
-                    pkg.popular
-                      ? 'bg-white text-amber-700 hover:bg-amber-50'
-                      : 'bg-amber-700 text-white hover:bg-amber-800'
-                  }`}
-                >
-                  Book This Package
-                </a>
-              </div>
+              </Link>
             ))}
+          </div>
+          
+          <div className="text-center mt-8">
+            <Link href="/packages" className="inline-block bg-amber-700 text-white px-8 py-3 rounded-full font-semibold hover:bg-amber-800 transition-all">
+              View All Package Details
+            </Link>
           </div>
         </div>
       </section>

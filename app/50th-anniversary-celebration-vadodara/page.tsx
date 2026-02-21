@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Phone, MessageCircle, Crown, Star, Heart, Users, Camera, Music, Gift, Sparkles, Award } from 'lucide-react';
+import { packages, formatPrice } from '@/lib/anniversary-config';
 
 export const metadata: Metadata = {
   title: '50th Golden Anniversary Celebration Vadodara | Golden Jubilee Party Venues',
@@ -27,60 +28,6 @@ const decadesJourney = [
   { decade: "3rd Decade", years: "21-30", description: "Silver years, watching children grow, rediscovering each other" },
   { decade: "4th Decade", years: "31-40", description: "Empty nest adventures, grandchildren, deeper appreciation" },
   { decade: "5th Decade", years: "41-50", description: "Golden years, legacy, the reward of lifelong partnership" }
-];
-
-const celebrationPackages = [
-  {
-    name: "Golden Grace",
-    price: "₹49,999",
-    guests: "Up to 50 guests",
-    highlights: [
-      "Gold-themed private hall",
-      "Elegant gold & white décor",
-      "Welcome ceremony setup",
-      "Lunch/dinner buffet",
-      "Custom anniversary cake",
-      "Professional photography",
-      "Sound system & music",
-      "4-hour celebration"
-    ]
-  },
-  {
-    name: "Golden Grandeur",
-    price: "₹99,999",
-    guests: "Up to 100 guests",
-    highlights: [
-      "Premium celebration venue",
-      "Luxury gold theme setup",
-      "50-year photo timeline display",
-      "Traditional aarti ceremony",
-      "Gourmet multi-cuisine catering",
-      "Professional photo & video",
-      "Live music/DJ",
-      "MC & anchoring",
-      "Guest memory book setup",
-      "6-hour celebration"
-    ],
-    popular: true
-  },
-  {
-    name: "Golden Legacy",
-    price: "₹1,99,999+",
-    guests: "150+ guests",
-    highlights: [
-      "Grand banquet hall",
-      "Designer gold décor",
-      "Documentary-style video",
-      "Vow renewal ceremony",
-      "Premium catering + live counters",
-      "Full cinematic coverage",
-      "Live orchestra/band",
-      "Celebrity anchor option",
-      "Return gifts for guests",
-      "Complete event management",
-      "Full day celebration"
-    ]
-  }
 ];
 
 const goldenDecorElements = [
@@ -281,56 +228,38 @@ export default function GoldenAnniversaryCelebrationPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            Golden Anniversary Packages
+            50th Anniversary Packages
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            From intimate family gatherings to grand community celebrations
+            Choose from our romantic celebration packages
           </p>
           
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {celebrationPackages.map((pkg, index) => (
-              <div
-                key={index}
-                className={`rounded-2xl p-8 ${
-                  pkg.popular
-                    ? 'bg-gradient-to-br from-yellow-600 to-amber-600 text-white ring-2 ring-yellow-300'
-                    : 'bg-yellow-50 border border-yellow-200'
-                }`}
-              >
-                {pkg.popular && (
-                  <div className="inline-block bg-white text-yellow-600 text-xs font-bold px-3 py-1 rounded-full mb-4">
-                    MOST CHOSEN
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
+            {packages.map((pkg, index) => (
+              <Link key={pkg.id} href={`/packages/${pkg.slug}`}>
+                <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-4 md:p-6 hover:shadow-lg transition-all group h-full">
+                  <div className="text-3xl mb-2">{pkg.emoji}</div>
+                  <h3 className="text-sm md:text-lg font-bold mb-1 text-yellow-800 group-hover:text-yellow-600 line-clamp-2">
+                    {pkg.name}
+                  </h3>
+                  <p className="text-xs md:text-sm text-yellow-600 mb-2 line-clamp-2 hidden md:block">
+                    {pkg.shortDescription}
+                  </p>
+                  <div className="text-lg md:text-2xl font-bold text-yellow-700">
+                    {formatPrice(pkg.price)}
                   </div>
-                )}
-                <h3 className={`text-2xl font-bold mb-2 ${pkg.popular ? 'text-white' : 'text-yellow-800'}`}>
-                  {pkg.name}
-                </h3>
-                <p className={`mb-4 text-sm ${pkg.popular ? 'text-yellow-200' : 'text-yellow-600'}`}>
-                  {pkg.guests}
-                </p>
-                <div className={`text-4xl font-bold mb-6 ${pkg.popular ? 'text-white' : 'text-yellow-700'}`}>
-                  {pkg.price}
+                  <div className="text-xs text-yellow-500 mt-1">
+                    {pkg.cakeIncluded ? '🎂 Cake included' : '🎂 +₹500'}
+                  </div>
                 </div>
-                <ul className="space-y-3 mb-8">
-                  {pkg.highlights.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <Star className={`w-4 h-4 mt-1 flex-shrink-0 ${pkg.popular ? 'text-yellow-300' : 'text-yellow-500'}`} />
-                      <span className={pkg.popular ? 'text-yellow-100' : 'text-yellow-700'}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={`https://wa.me/917487888730?text=Hi! I'm interested in the ${pkg.name} package for a 50th anniversary`}
-                  className={`block text-center py-3 rounded-full font-semibold transition-all ${
-                    pkg.popular
-                      ? 'bg-white text-yellow-600 hover:bg-yellow-50'
-                      : 'bg-yellow-600 text-white hover:bg-yellow-700'
-                  }`}
-                >
-                  Book This Package
-                </a>
-              </div>
+              </Link>
             ))}
+          </div>
+          
+          <div className="text-center mt-8">
+            <Link href="/packages" className="inline-block bg-yellow-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-yellow-700 transition-all">
+              View All Package Details
+            </Link>
           </div>
         </div>
       </section>

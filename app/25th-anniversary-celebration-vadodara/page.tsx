@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Phone, MessageCircle, Crown, Star, Heart, Users, Camera, Music, Utensils, Gift, Sparkles } from 'lucide-react';
+import { packages, formatPrice } from '@/lib/anniversary-config';
 
 export const metadata: Metadata = {
   title: '25th Silver Jubilee Anniversary Celebration Vadodara | Silver Anniversary Venues',
@@ -21,55 +22,6 @@ const silverJubileeSignificance = {
   flower: "Iris",
   meaning: "Silver represents radiance and brilliance — like your love that has shone bright for 25 years. It symbolizes purity, clarity, and the precious nature of enduring love."
 };
-
-const celebrationPackages = [
-  {
-    name: "Silver Elegance",
-    price: "₹24,999",
-    guests: "Up to 25 guests",
-    highlights: [
-      "Silver-themed private venue",
-      "Elegant silver & white decorations",
-      "Customized anniversary cake",
-      "Welcome drinks for guests",
-      "3-hour celebration slot",
-      "Basic photography"
-    ]
-  },
-  {
-    name: "Silver Grandeur",
-    price: "₹49,999",
-    guests: "Up to 50 guests",
-    highlights: [
-      "Premium decorated hall",
-      "Luxury silver décor with chandeliers",
-      "Multi-tier designer cake",
-      "Full dinner buffet",
-      "Professional photo & video",
-      "Live music performance",
-      "MC & entertainment",
-      "Guest coordination"
-    ],
-    popular: true
-  },
-  {
-    name: "Silver Royale",
-    price: "₹99,999+",
-    guests: "75+ guests",
-    highlights: [
-      "Grand celebration hall",
-      "Designer silver theme setup",
-      "Gourmet multi-cuisine catering",
-      "Premium beverages",
-      "Full cinematic coverage",
-      "Live orchestra/band",
-      "Choreographed dances",
-      "Complete event management",
-      "Memory book station",
-      "Return gifts for guests"
-    ]
-  }
-];
 
 const decorationElements = [
   { element: "Silver Balloon Cascade", description: "Metallic silver balloons with white accents creating elegant arches" },
@@ -226,56 +178,38 @@ export default function SilverAnniversaryCelebrationPage() {
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            Silver Jubilee Celebration Packages
+            25th Anniversary Packages
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            From intimate family gatherings to grand community celebrations
+            Choose from our romantic celebration packages
           </p>
           
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {celebrationPackages.map((pkg, index) => (
-              <div
-                key={index}
-                className={`rounded-2xl p-8 ${
-                  pkg.popular
-                    ? 'bg-gradient-to-br from-slate-700 to-slate-800 text-white ring-2 ring-slate-400'
-                    : 'bg-white border border-slate-200'
-                }`}
-              >
-                {pkg.popular && (
-                  <div className="inline-block bg-slate-300 text-slate-800 text-xs font-bold px-3 py-1 rounded-full mb-4">
-                    MOST CHOSEN
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
+            {packages.map((pkg, index) => (
+              <Link key={pkg.id} href={`/packages/${pkg.slug}`}>
+                <div className="bg-white border border-slate-200 rounded-2xl p-4 md:p-6 hover:shadow-lg transition-all group h-full">
+                  <div className="text-3xl mb-2">{pkg.emoji}</div>
+                  <h3 className="text-sm md:text-lg font-bold mb-1 text-slate-800 group-hover:text-slate-600 line-clamp-2">
+                    {pkg.name}
+                  </h3>
+                  <p className="text-xs md:text-sm text-slate-600 mb-2 line-clamp-2 hidden md:block">
+                    {pkg.shortDescription}
+                  </p>
+                  <div className="text-lg md:text-2xl font-bold text-slate-700">
+                    {formatPrice(pkg.price)}
                   </div>
-                )}
-                <h3 className={`text-2xl font-bold mb-2 ${pkg.popular ? 'text-white' : 'text-slate-800'}`}>
-                  {pkg.name}
-                </h3>
-                <p className={`mb-4 text-sm ${pkg.popular ? 'text-slate-300' : 'text-slate-500'}`}>
-                  {pkg.guests}
-                </p>
-                <div className={`text-4xl font-bold mb-6 ${pkg.popular ? 'text-white' : 'text-slate-700'}`}>
-                  {pkg.price}
+                  <div className="text-xs text-slate-500 mt-1">
+                    {pkg.cakeIncluded ? '🎂 Cake included' : '🎂 +₹500'}
+                  </div>
                 </div>
-                <ul className="space-y-3 mb-8">
-                  {pkg.highlights.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <Star className={`w-4 h-4 mt-1 flex-shrink-0 ${pkg.popular ? 'text-slate-300' : 'text-slate-500'}`} />
-                      <span className={pkg.popular ? 'text-slate-200' : 'text-slate-600'}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={`https://wa.me/917487888730?text=Hi! I'm interested in the ${pkg.name} package for our 25th anniversary`}
-                  className={`block text-center py-3 rounded-full font-semibold transition-all ${
-                    pkg.popular
-                      ? 'bg-white text-slate-800 hover:bg-slate-100'
-                      : 'bg-slate-700 text-white hover:bg-slate-800'
-                  }`}
-                >
-                  Book This Package
-                </a>
-              </div>
+              </Link>
             ))}
+          </div>
+          
+          <div className="text-center mt-8">
+            <Link href="/packages" className="inline-block bg-slate-700 text-white px-8 py-3 rounded-full font-semibold hover:bg-slate-800 transition-all">
+              View All Package Details
+            </Link>
           </div>
         </div>
       </section>
