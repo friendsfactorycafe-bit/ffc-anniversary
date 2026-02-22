@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     description: 'A decade of love, a lifetime of memories. Celebrate 10 beautiful years together with us.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/10th-anniversary-celebration-vadodara',
+  },
 };
 
 const decadeSignificance = {

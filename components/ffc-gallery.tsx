@@ -16,58 +16,87 @@ export interface GalleryItem {
   featured?: boolean;
 }
 
-// SEO-friendly gallery items with keyword-rich names
+// Anniversary gallery items with real file paths from /public/images/gallery
 export const galleryItems: GalleryItem[] = [
-  // Featured Images
-  { type: 'image', src: '/images/gallery/rooftop-romantic-setup-vadodara-1.jpg', alt: 'Romantic rooftop setup in Vadodara', title: 'Romantic Rooftop', subtitle: 'Premium Package', featured: true },
-  { type: 'image', src: '/images/gallery/romantic-rooftop-candlelight-dinner-vadodara-1.jpg', alt: 'Candlelight dinner in Vadodara', title: 'Candlelight Dinner', featured: false },
-  { type: 'image', src: '/images/gallery/candlelight-dinner-setup-vadodara-1.jpg', alt: 'Romantic dinner setup Vadodara', title: 'Evening Romance', featured: false },
-  { type: 'video', src: '/videos/birthday-celebration-video-vadodara-1.mp4', alt: 'Birthday celebration video Vadodara', title: 'Birthday Celebration', featured: false },
-  { type: 'image', src: '/images/gallery/birthday-surprise-decoration-vadodara-1.jpg', alt: 'Birthday surprise decoration Vadodara', title: 'Birthday Surprise', featured: false },
-  { type: 'image', src: '/images/gallery/anniversary-celebration-vadodara-1.jpg', alt: 'Anniversary celebration Vadodara', title: 'Anniversary Special', featured: false },
-  { type: 'video', src: '/videos/anniversary-celebration-video-vadodara-1.mp4', alt: 'Anniversary celebration video Vadodara', title: 'Anniversary Video', featured: false },
-  { type: 'image', src: '/images/gallery/romantic-table-decoration-vadodara-1.jpg', alt: 'Romantic table decoration Vadodara', title: 'Table Decor', featured: false },
-  { type: 'image', src: '/images/gallery/birthday-balloon-decoration-vadodara-1.jpg', alt: 'Birthday balloon decoration Vadodara', title: 'Balloon Decoration', featured: false },
-  { type: 'image', src: '/images/gallery/anniversary-dinner-setup-vadodara-1.jpg', alt: 'Anniversary dinner setup Vadodara', title: 'Anniversary Dinner', featured: false },
-  { type: 'video', src: '/videos/rooftop-celebration-reel-vadodara-1.mp4', alt: 'Rooftop celebration reel Vadodara', title: 'Rooftop Vibes', featured: false },
-  { type: 'image', src: '/images/gallery/romantic-ambiance-cafe-vadodara-1.jpg', alt: 'Romantic ambiance cafe Vadodara', title: 'Romantic Ambiance', featured: false },
-  { type: 'image', src: '/images/gallery/couple-celebration-vadodara-1.jpg', alt: 'Couple celebration Vadodara', title: 'Couple Moment', featured: false },
-  { type: 'image', src: '/images/gallery/evening-romantic-celebration-vadodara-1.jpg', alt: 'Evening romantic celebration Vadodara', title: 'Evening Magic', featured: false },
-  { type: 'video', src: '/videos/birthday-reel-vadodara-1.mp4', alt: 'Birthday reel Vadodara', title: 'Birthday Reel', featured: false },
-  { type: 'image', src: '/images/gallery/glass-house-dinner-vadodara-1.jpg', alt: 'Glass house dinner Vadodara', title: 'Glass House', featured: false },
-  { type: 'image', src: '/images/gallery/night-romantic-setup-vadodara-1.jpg', alt: 'Night romantic setup Vadodara', title: 'Night Setup', featured: false },
-  { type: 'video', src: '/videos/romantic-moments-reel-vadodara-1.mp4', alt: 'Romantic moments reel Vadodara', title: 'Romantic Reel', featured: false },
-  { type: 'image', src: '/images/gallery/proposal-setup-vadodara-1.jpg', alt: 'Proposal setup Vadodara', title: 'Proposal Setup', featured: false },
-  { type: 'image', src: '/images/gallery/day-celebration-vadodara-1.jpg', alt: 'Day celebration Vadodara', title: 'Day Celebration', featured: false },
-  { type: 'video', src: '/videos/anniversary-dinner-video-vadodara-1.mp4', alt: 'Anniversary dinner video Vadodara', title: 'Anniversary Moments', featured: false },
-  { type: 'image', src: '/images/gallery/surprise-party-vadodara-1.jpg', alt: 'Surprise party Vadodara', title: 'Surprise Party', featured: false },
-  { type: 'image', src: '/images/gallery/romantic-dinner-date-vadodara-1.jpg', alt: 'Romantic dinner date Vadodara', title: 'Dinner Date', featured: false },
-  { type: 'video', src: '/videos/birthday-surprise-video-vadodara-1.mp4', alt: 'Birthday surprise video Vadodara', title: 'Birthday Surprise', featured: false },
-  { type: 'image', src: '/images/gallery/valentines-day-celebration-vadodara-1.jpg', alt: 'Valentines day celebration Vadodara', title: 'Valentine Setup', featured: false },
-  { type: 'image', src: '/images/gallery/valentines-dinner-vadodara-1.jpg', alt: 'Valentines dinner Vadodara', title: 'Valentine Dinner', featured: false },
-  { type: 'video', src: '/videos/valentines-celebration-video-vadodara-1.mp4', alt: 'Valentines celebration video Vadodara', title: 'Valentine Video', featured: false },
-  { type: 'image', src: '/images/gallery/valentines-romantic-setup-vadodara-1.jpg', alt: 'Valentines romantic setup Vadodara', title: 'Valentine Romance', featured: false },
-  { type: 'image', src: '/images/gallery/birthday-surprise-for-girlfriend-vadodara-1.jpg', alt: 'Birthday surprise for girlfriend Vadodara', title: 'Girlfriend Surprise', featured: false },
-  { type: 'video', src: '/videos/baby-moments-video-vadodara-1.mp4', alt: 'Baby moments video Vadodara', title: 'Baby Moments', featured: false },
-  { type: 'image', src: '/images/gallery/birthday-surprise-for-boyfriend-vadodara-1.jpg', alt: 'Birthday surprise for boyfriend Vadodara', title: 'Boyfriend Surprise', featured: false },
-  { type: 'image', src: '/images/gallery/birthday-room-decoration-vadodara-1.jpg', alt: 'Birthday room decoration Vadodara', title: 'Room Decoration', featured: false },
-  { type: 'video', src: '/videos/pre-wedding-couple-video-vadodara-1.mp4', alt: 'Pre-wedding couple video Vadodara', title: 'Pre-Wedding Video', featured: false },
-  { type: 'image', src: '/images/gallery/couple-birthday-party-vadodara-1.jpg', alt: 'Couple birthday party Vadodara', title: 'Birthday Party', featured: false },
-  { type: 'image', src: '/images/gallery/surprise-date-vadodara-1.jpg', alt: 'Surprise date Vadodara', title: 'Surprise Date', featured: false },
-  { type: 'video', src: '/videos/pre-wedding-shoot-video-vadodara-1.mp4', alt: 'Pre-wedding shoot video Vadodara', title: 'Pre-Wedding Shoot', featured: false },
-  { type: 'image', src: '/images/gallery/couple-moment-vadodara-1.jpg', alt: 'Couple moment Vadodara', title: 'Couple Moment', featured: false },
-  { type: 'image', src: '/images/gallery/pre-wedding-photoshoot-vadodara-1.jpg', alt: 'Pre-wedding photoshoot Vadodara', title: 'Pre-Wedding Photo', featured: false },
-  { type: 'video', src: '/videos/romantic-dinner-video-vadodara-1.mp4', alt: 'Romantic dinner video Vadodara', title: 'Romantic Dinner', featured: false },
-  { type: 'image', src: '/images/gallery/pre-wedding-shoot-vadodara-1.jpg', alt: 'Pre-wedding shoot Vadodara', title: 'Photo Shoot', featured: false },
-  { type: 'image', src: '/images/gallery/baby-shower-decoration-vadodara-1.jpg', alt: 'Baby shower decoration Vadodara', title: 'Baby Shower', featured: false },
-  { type: 'video', src: '/videos/proposal-video-vadodara-1.mp4', alt: 'Proposal video Vadodara', title: 'Proposal Video', featured: false },
-  { type: 'image', src: '/images/gallery/baby-moments-celebration-vadodara-1.jpg', alt: 'Baby moments celebration Vadodara', title: 'Baby Moments', featured: false },
-  { type: 'image', src: '/images/gallery/candlelight-dinner-for-couples-vadodara-1.jpg', alt: 'Candlelight dinner for couples Vadodara', title: 'Couple Dinner', featured: false },
-  { type: 'video', src: '/videos/couple-celebration-video-vadodara-1.mp4', alt: 'Couple celebration video Vadodara', title: 'Celebration Video', featured: false },
-  { type: 'image', src: '/images/gallery/rooftop-dinner-vadodara-1.jpg', alt: 'Rooftop dinner Vadodara', title: 'Rooftop Dinner', featured: false },
-  { type: 'image', src: '/images/gallery/private-dining-vadodara-1.jpg', alt: 'Private dining Vadodara', title: 'Private Dining', featured: false },
-  { type: 'image', src: '/images/gallery/romantic-venue-vadodara-1.jpg', alt: 'Romantic venue Vadodara', title: 'Romantic Venue', featured: false },
-  { type: 'image', src: '/images/gallery/celebration-venue-vadodara-1.jpg', alt: 'Celebration venue Vadodara', title: 'Celebration Venue', featured: false },
+  // Featured Anniversary Celebration Photos
+  { type: 'image', src: '/images/gallery/IMG_20251108_195907946.jpg', alt: 'Romantic anniversary celebration setup Vadodara', title: 'Anniversary Setup', subtitle: 'Premium Package', featured: true },
+  { type: 'image', src: '/images/gallery/IMG_20251108_195914428.jpg', alt: 'Anniversary dinner decoration Vadodara', title: 'Romantic Dinner', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251108_195959576.jpg', alt: 'Anniversary candlelight setup Vadodara', title: 'Candlelight Setup', featured: false },
+  { type: 'video', src: '/images/gallery/1000330054.mp4', alt: 'Anniversary celebration video Vadodara', title: 'Anniversary Celebration', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251108_200130169.jpg', alt: 'Romantic anniversary venue Vadodara', title: 'Romantic Venue', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251117_201140680.jpg', alt: 'Anniversary surprise decoration Vadodara', title: 'Anniversary Surprise', featured: false },
+  { type: 'video', src: '/images/gallery/1000330055.mp4', alt: 'Romantic anniversary dinner video Vadodara', title: 'Anniversary Dinner', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251117_201157039.jpg', alt: 'Anniversary table decoration Vadodara', title: 'Table Decoration', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251126_195504828.jpg', alt: 'Anniversary celebration in Vadodara', title: 'Evening Celebration', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251126_195520782.jpg', alt: 'Romantic anniversary ambiance Vadodara', title: 'Romantic Ambiance', featured: false },
+  { type: 'video', src: '/images/gallery/1000330059.mp4', alt: 'Anniversary rooftop celebration video Vadodara', title: 'Rooftop Celebration', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251126_195542577.jpg', alt: 'Anniversary couple celebration Vadodara', title: 'Couple Moment', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251126_195913666.jpg', alt: 'Anniversary evening setup Vadodara', title: 'Evening Setup', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251126_195930910 (1).jpg', alt: 'Anniversary party decoration Vadodara', title: 'Party Decor', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251126_195948095.jpg', alt: 'Romantic anniversary night Vadodara', title: 'Night Romance', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251126_200041024.jpg', alt: 'Anniversary surprise for couple Vadodara', title: 'Couple Surprise', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251130_190628327.jpg', alt: 'Anniversary private dining Vadodara', title: 'Private Dining', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251130_190653723.jpg', alt: 'Anniversary romantic dinner Vadodara', title: 'Dinner Date', featured: false },
+  { type: 'video', src: '/images/gallery/reel-.mp4', alt: 'Anniversary celebration reel Vadodara', title: 'Anniversary Reel', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251201_201429116.jpg', alt: 'Anniversary glass house celebration Vadodara', title: 'Glass House', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251201_201504639.jpg', alt: 'Anniversary rooftop dinner Vadodara', title: 'Rooftop Dinner', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251201_201519850.jpg', alt: 'Anniversary venue decoration Vadodara', title: 'Venue Decor', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251203_133009085.jpg', alt: 'Anniversary day celebration Vadodara', title: 'Day Celebration', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251203_202600922.jpg', alt: 'Anniversary night setup Vadodara', title: 'Night Setup', featured: false },
+  { type: 'video', src: '/images/gallery/VID-20250416-WA0010.mp4', alt: 'Anniversary surprise video Vadodara', title: 'Surprise Video', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251209_193815280.jpg', alt: 'Anniversary candlelight dinner Vadodara', title: 'Candlelight Dinner', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251213_191903856.jpg', alt: 'Anniversary celebration for husband Vadodara', title: 'Husband Surprise', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251213_191910048.jpg', alt: 'Anniversary celebration for wife Vadodara', title: 'Wife Surprise', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251226_190325218.jpg', alt: 'Anniversary special evening Vadodara', title: 'Special Evening', featured: false },
+  { type: 'video', src: '/images/gallery/VID-20250425-WA0024.mp4', alt: 'Anniversary celebration moments Vadodara', title: 'Anniversary Moments', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_3672.jpg', alt: 'Romantic anniversary setup Vadodara', title: 'Romantic Setup', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_3688.JPG', alt: 'Anniversary photoshoot Vadodara', title: 'Anniversary Photo', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_7626.jpg', alt: 'Anniversary venue Vadodara', title: 'Our Venue', featured: false },
+  { type: 'video', src: '/images/gallery/Yash And Tulsi .mp4', alt: 'Couple anniversary celebration video Vadodara', title: 'Couple Celebration', featured: false },
+
+  // WhatsApp shared celebration photos
+  { type: 'image', src: '/images/gallery/IMG-20241204-WA0066.jpg', alt: 'Anniversary party in Vadodara', title: 'Anniversary Party', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20241204-WA0070.jpg', alt: 'Anniversary balloon decoration Vadodara', title: 'Balloon Decor', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250123-WA0014.jpg', alt: 'Anniversary rooftop celebration Vadodara', title: 'Rooftop Celebration', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250123-WA0018.jpg', alt: 'Anniversary candlelight setup for couples Vadodara', title: 'Couple Setup', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250123-WA0020.jpg', alt: 'Anniversary dinner date Vadodara', title: 'Dinner Date', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250123-WA0022.jpg', alt: 'Anniversary celebration venue Vadodara', title: 'Celebration Venue', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250123-WA0029.jpg', alt: 'Romantic anniversary evening Vadodara', title: 'Romantic Evening', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250123-WA0033.jpg', alt: 'Anniversary surprise planning Vadodara', title: 'Surprise Plan', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250123-WA0037.jpg', alt: 'Anniversary celebration ideas Vadodara', title: 'Celebration Ideas', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250123-WA0039.jpg', alt: 'Anniversary gift and celebration Vadodara', title: 'Gift Celebration', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250207-WA0012.jpg', alt: 'Valentine anniversary celebration Vadodara', title: 'Valentine Special', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250207-WA0014.jpg', alt: 'Anniversary couple moment Vadodara', title: 'Couple Moment', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250209-WA0012.jpg', alt: 'Romantic anniversary setup Vadodara', title: 'Romantic Setup', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250209-WA0016.jpg', alt: 'Anniversary decoration Vadodara', title: 'Anniversary Decor', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250209-WA0018.jpg', alt: 'Anniversary evening celebration Vadodara', title: 'Evening Moment', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250425-WA0016 (1).jpg', alt: 'Anniversary party setup Vadodara', title: 'Party Setup', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250425-WA0021.jpg', alt: 'Anniversary venue decoration Vadodara', title: 'Venue Setup', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250425-WA0026.jpg', alt: 'Anniversary celebration moment Vadodara', title: 'Celebration', featured: false },
+
+  // Classic celebration photos
+  { type: 'image', src: '/images/gallery/10.jpg', alt: 'Anniversary celebration at Friends Factory Cafe Vadodara', title: 'Classic Setup', featured: false },
+  { type: 'image', src: '/images/gallery/13.jpg', alt: 'Romantic anniversary venue Vadodara', title: 'Venue View', featured: false },
+  { type: 'image', src: '/images/gallery/2-1.jpg', alt: 'Anniversary candlelight dinner Vadodara', title: 'Candlelight', featured: false },
+  { type: 'image', src: '/images/gallery/3-1.jpg', alt: 'Anniversary rooftop setup Vadodara', title: 'Rooftop', featured: false },
+  { type: 'image', src: '/images/gallery/4-1.jpg', alt: 'Anniversary glass house dinner Vadodara', title: 'Glass House', featured: false },
+  { type: 'image', src: '/images/gallery/5.jpg', alt: 'Anniversary private dining Vadodara', title: 'Private Setup', featured: false },
+  { type: 'image', src: '/images/gallery/6.jpg', alt: 'Anniversary surprise decoration Vadodara', title: 'Surprise Decor', featured: false },
+  { type: 'image', src: '/images/gallery/57b5e578-168b-4542-85ea-58d17a849c01.jpg', alt: 'Anniversary couple celebration Vadodara', title: 'Couple Joy', featured: false },
+  { type: 'image', src: '/images/gallery/5e6fb556-2f94-43ff-bbff-f3446181300e.jpg', alt: 'Anniversary premium package Vadodara', title: 'Premium Package', featured: false },
+  { type: 'image', src: '/images/gallery/20240126_130014_3dbef883-2fbc-4a8c-8aea-c5113be00e81.JPG', alt: 'Anniversary daytime celebration Vadodara', title: 'Day Celebration', featured: false },
+  { type: 'image', src: '/images/gallery/20240903_145321_b91de0ce-dddd-44e6-8cb6-f524674139df.JPG', alt: 'Anniversary venue ambiance Vadodara', title: 'Venue Ambiance', featured: false },
+  { type: 'image', src: '/images/gallery/20240926_152854_13bb1c5a-3d17-4c08-b174-ec5376fa1b0a.JPG', alt: 'Anniversary celebration planning Vadodara', title: 'Planning Setup', featured: false },
+];
+
+// Hero images for anniversary pages
+export const anniversaryHeroImages = [
+  '/images/gallery/IMG_20251108_195907946.jpg',
+  '/images/gallery/IMG_20251117_201140680.jpg',
+  '/images/gallery/IMG_20251126_195504828.jpg',
+  '/images/gallery/IMG_20251130_190628327.jpg',
+  '/images/gallery/IMG_20251201_201429116.jpg',
+  '/images/gallery/IMG_20251209_193815280.jpg',
 ];
 
 interface FFCGalleryProps {
@@ -100,10 +129,10 @@ export function FFCGallery({
   const videoCount = galleryItems.filter(item => item.type === 'video').length;
 
   return (
-    <section className={`py-12 md:py-16 bg-gradient-to-br from-rose-50 via-white to-pink-50 ${className}`}>
+    <section className={`py-12 md:py-16 bg-gradient-to-br from-amber-50 via-white to-amber-50 ${className}`}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
-          <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+          <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
             <ImageIcon className="h-4 w-4 mr-2" /> {title}
           </Badge>
           <h2 className="text-2xl md:text-3xl font-bold mb-2 font-serif">
@@ -121,8 +150,8 @@ export function FFCGallery({
               variant={activeFilter === 'all' ? 'default' : 'outline'} 
               onClick={() => setActiveFilter('all')}
               className={activeFilter === 'all' 
-                ? 'bg-rose-500 hover:bg-rose-600 text-white' 
-                : 'border-rose-300 text-rose-700 hover:bg-rose-50'}
+                ? 'bg-amber-500 hover:bg-rose-800 text-white' 
+                : 'border-amber-300 text-rose-900 hover:bg-amber-50'}
             >
               All ({photoCount + videoCount})
             </Button>
@@ -130,8 +159,8 @@ export function FFCGallery({
               variant={activeFilter === 'photos' ? 'default' : 'outline'} 
               onClick={() => setActiveFilter('photos')}
               className={activeFilter === 'photos' 
-                ? 'bg-rose-500 hover:bg-rose-600 text-white' 
-                : 'border-rose-300 text-rose-700 hover:bg-rose-50'}
+                ? 'bg-amber-500 hover:bg-rose-800 text-white' 
+                : 'border-amber-300 text-rose-900 hover:bg-amber-50'}
             >
               <ImageIcon className="h-4 w-4 mr-2" />
               Photos ({photoCount})
@@ -140,8 +169,8 @@ export function FFCGallery({
               variant={activeFilter === 'videos' ? 'default' : 'outline'} 
               onClick={() => setActiveFilter('videos')}
               className={activeFilter === 'videos' 
-                ? 'bg-rose-500 hover:bg-rose-600 text-white' 
-                : 'border-rose-300 text-rose-700 hover:bg-rose-50'}
+                ? 'bg-amber-500 hover:bg-rose-800 text-white' 
+                : 'border-amber-300 text-rose-900 hover:bg-amber-50'}
             >
               <Play className="h-4 w-4 mr-2" />
               Videos ({videoCount})
@@ -187,7 +216,7 @@ export function FFCGallery({
                   />
                   <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/10 transition-colors">
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Play className="h-4 w-4 md:h-5 md:w-5 text-rose-600 ml-1" fill="currentColor" />
+                      <Play className="h-4 w-4 md:h-5 md:w-5 text-rose-800 ml-1" fill="currentColor" />
                     </div>
                   </div>
                   <div className="absolute bottom-3 left-3 text-white opacity-0 group-hover:opacity-100 transition-opacity">

@@ -65,15 +65,15 @@ export interface AreaConfig {
 
 // ==================== SITE CONFIG ====================
 export const siteConfig = {
-  name: "Friends Factory Cafe",
-  tagline: "Where Every Occasion Turns Into a Forever Memory Under the Stars",
-  description: "Premium romantic celebration venue in Vadodara for couples. Birthday surprises, candlelight dinners, anniversary celebrations, proposals, pre-wedding shoots & more.",
+  name: "Anniversary Celebration Vadodara",
+  tagline: "Create Timeless Memories on Your Special Day",
+  description: "Vadodara's premier anniversary celebration destination. Elegant private venues, romantic decorations, candlelight dinners, and personalized celebration packages for couples.",
   phone: "+91 7487888730",
   whatsapp: "917487888730",
-  email: "hello@friendsfactorycafe.com",
+  email: "hello@anniversarydinnervadodara.com",
   address: "424, OneWest, Asopalav W, 4th Floor, Priya Talkies Road, Besides Adventuraa, Sevasi - Canal Rd, Gotri, Vadodara, Gujarat 391101",
   city: "Vadodara",
-  website: "https://friendsfactorycafe.com",
+  website: "https://anniversarydinnervadodara.com",
   colors: {
     primary: "#D97706", // Amber/Orange
     secondary: "#F59E0B",

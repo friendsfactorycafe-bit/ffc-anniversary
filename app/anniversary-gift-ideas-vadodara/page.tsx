@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'Beyond flowers and chocolates. Unique and meaningful anniversary gift experiences.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/anniversary-gift-ideas-vadodara',
+  },
 };
 
 const giftPhilosophy = {

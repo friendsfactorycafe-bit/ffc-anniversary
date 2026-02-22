@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'Transform any space into a romantic haven. Surprise setups that make hearts melt.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/romantic-anniversary-setup-vadodara',
+  },
 };
 
 const setupTypes = [

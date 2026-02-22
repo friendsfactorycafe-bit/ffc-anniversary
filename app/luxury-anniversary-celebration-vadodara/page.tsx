@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'The finest anniversary experience in Vadodara. Where every detail speaks of elegance.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/luxury-anniversary-celebration-vadodara',
+  },
 };
 
 const luxuryPhilosophy = {

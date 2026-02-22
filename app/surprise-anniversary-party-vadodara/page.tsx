@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'Expert surprise party planning with secret guest coordination. Your partner will never suspect a thing!',
     type: 'website',
   },
+  alternates: {
+    canonical: '/surprise-anniversary-party-vadodara',
+  },
 };
 
 const secretKeepingStrategies = [

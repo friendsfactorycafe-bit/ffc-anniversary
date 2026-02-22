@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'Professional planners who handle everything. You celebrate, we organize.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/anniversary-party-organizers-vadodara',
+  },
 };
 
 const whyHireOrganizer = [

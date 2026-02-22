@@ -17,7 +17,10 @@ export const metadata: Metadata = {
     'anniversary celebration gotri',
     'anniversary decoration akota',
     'anniversary planners vadodara'
-  ]
+  ],
+  alternates: {
+    canonical: '/areas',
+  },
 };
 
 export default function AreasPage() {

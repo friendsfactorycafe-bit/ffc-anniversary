@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'Celebrate under the open sky. Gardens, lawns, and beautiful outdoor venues.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/outdoor-anniversary-celebration-vadodara',
+  },
 };
 
 const outdoorBenefits = [

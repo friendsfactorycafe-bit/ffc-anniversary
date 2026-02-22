@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'An intimate dining experience bathed in soft candlelight. Perfect for anniversary celebrations.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/candlelight-anniversary-dinner-vadodara',
+  },
 };
 
 const candlelightMagic = {

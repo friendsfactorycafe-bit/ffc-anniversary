@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'Curated list of the best venues and spots for anniversary celebrations in Vadodara.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/best-anniversary-places-vadodara',
+  },
 };
 
 const venueCategories = [

@@ -36,19 +36,19 @@ export const siteConfig = {
   description: "Vadodara's premier anniversary celebration destination. Elegant private venues, romantic decorations, candlelight dinners, and personalized celebration packages for couples celebrating their love story.",
   phone: "+91 7487888730",
   whatsapp: "917487888730",
-  email: "hello@anniversarycelebrationvadodara.com",
+  email: "hello@anniversarydinnervadodara.com",
   address: "424, OneWest, Asopalav W, 4th Floor, Priya Talkies Road, Besides Adventuraa, Sevasi - Canal Rd, Gotri, Vadodara, Gujarat 391101",
   city: "Vadodara",
-  website: "https://anniversarycelebrationvadodara.com",
+  website: "https://anniversarydinnervadodara.com",
   colors: {
-    primary: "#BE185D", // Rose Pink
-    secondary: "#F472B6",
-    accent: "#9D174D",
-    gradient: "from-rose-600 to-pink-600",
-    gradientHover: "from-rose-700 to-pink-700",
-    lightBg: "bg-rose-50",
-    darkBg: "bg-rose-900",
-    text: "text-rose-600"
+    primary: "#7B1F36", // Deep Burgundy/Wine
+    secondary: "#D4AF37",  // Champagne Gold
+    accent: "#5B1A30", // Dark Wine
+    gradient: "from-[#7B1F36] to-[#5B1A30]",
+    gradientHover: "from-[#6B1A30] to-[#4B1525]",
+    lightBg: "bg-amber-50",
+    darkBg: "bg-[#3D0F1B]",
+    text: "text-[#7B1F36]"
   },
   socialLinks: {
     instagram: "https://www.instagram.com/anniversarycelebrationvadodara/",
@@ -676,7 +676,40 @@ export const anniversaryKeywords: ServiceKeyword[] = [
     h1: "Best Anniversary Celebration Places in Vadodara", 
     metaTitle: "Best Anniversary Places Vadodara | Top Venues", 
     metaDescription: "Find the best places to celebrate your anniversary in Vadodara. Private venues, romantic ambiance, and great service." 
-  }
+  },
+  // ==================== NEW COUPLE-FOCUSED ANNIVERSARY PAGES ====================
+  { slug: "anniversary-surprise-for-partner-vadodara", title: "Anniversary Surprise for Partner", h1: "Anniversary Surprise for Partner in Vadodara", metaTitle: "Anniversary Surprise Partner Vadodara | Special Celebration", metaDescription: "Plan a romantic anniversary surprise for your partner in Vadodara with intimate decorations and candlelight at Friends Factory Cafe." },
+  { slug: "anniversary-couple-dinner-vadodara", title: "Anniversary Couple Dinner", h1: "Anniversary Couple Dinner in Vadodara", metaTitle: "Anniversary Couple Dinner Vadodara | Romantic Table for Two", metaDescription: "Book a romantic anniversary couple dinner in Vadodara with private dining and elegant setup at Friends Factory Cafe." },
+  { slug: "anniversary-date-ideas-vadodara", title: "Anniversary Date Ideas", h1: "Best Anniversary Date Ideas in Vadodara", metaTitle: "Anniversary Date Ideas Vadodara | Creative Couple Plans", metaDescription: "Discover the best anniversary date ideas in Vadodara for couples. Rooftop dinners, surprise setups at Friends Factory Cafe." },
+  { slug: "anniversary-couple-experience-vadodara", title: "Anniversary Couple Experience", h1: "Anniversary Couple Experience in Vadodara", metaTitle: "Anniversary Couple Experience Vadodara | Premium Celebration", metaDescription: "Enjoy a premium anniversary couple experience in Vadodara with curated setup and romantic ambiance at Friends Factory Cafe." },
+  { slug: "intimate-anniversary-dinner-vadodara", title: "Intimate Anniversary Dinner", h1: "Intimate Anniversary Dinner in Vadodara", metaTitle: "Intimate Anniversary Dinner Vadodara | Private Setting", metaDescription: "Book an intimate anniversary dinner in Vadodara with private setting and romantic decorations at Friends Factory Cafe." },
+  { slug: "anniversary-dinner-for-two-vadodara", title: "Anniversary Dinner for Two", h1: "Anniversary Dinner for Two in Vadodara", metaTitle: "Anniversary Dinner for Two Vadodara | Exclusive Couple Table", metaDescription: "Reserve an exclusive anniversary dinner for two in Vadodara with candlelight and romantic setting at Friends Factory Cafe." },
+  { slug: "anniversary-with-cake-vadodara", title: "Anniversary with Cake", h1: "Anniversary Celebration with Cake in Vadodara", metaTitle: "Anniversary Cake Vadodara | Sweet Celebration", metaDescription: "Celebrate your anniversary with a complimentary celebration cake in Vadodara at Friends Factory Cafe." },
+  { slug: "anniversary-with-flowers-vadodara", title: "Anniversary with Flowers", h1: "Anniversary Celebration with Flowers in Vadodara", metaTitle: "Anniversary Flowers Vadodara | Floral Romance", metaDescription: "Celebrate your anniversary with beautiful flower arrangements in Vadodara. Rose petals and bouquets at Friends Factory Cafe." },
+  { slug: "anniversary-with-music-vadodara", title: "Anniversary with Music", h1: "Anniversary Celebration with Music in Vadodara", metaTitle: "Anniversary Music Vadodara | Romantic Melodies", metaDescription: "Enjoy your anniversary with romantic music in Vadodara. Soft melodies and ambient tunes at Friends Factory Cafe." },
+  { slug: "anniversary-under-stars-vadodara", title: "Anniversary Under Stars", h1: "Anniversary Celebration Under the Stars in Vadodara", metaTitle: "Anniversary Under Stars Vadodara | Starlit Romance", metaDescription: "Celebrate your anniversary under the stars in Vadodara. Open-air rooftop celebration at Friends Factory Cafe." },
+  { slug: "anniversary-for-newlyweds-vadodara", title: "Anniversary for Newlyweds", h1: "Anniversary Celebration for Newlyweds in Vadodara", metaTitle: "Anniversary Newlyweds Vadodara | First Year Celebration", metaDescription: "Celebrate your first anniversary as newlyweds in Vadodara with romantic setup at Friends Factory Cafe." },
+  { slug: "anniversary-couple-photoshoot-vadodara", title: "Anniversary Couple Photoshoot", h1: "Anniversary Couple Photoshoot in Vadodara", metaTitle: "Anniversary Photoshoot Vadodara | Capture Memories", metaDescription: "Capture beautiful anniversary couple photos in Vadodara with stunning rooftop backdrops at Friends Factory Cafe." },
+  { slug: "anniversary-love-celebration-vadodara", title: "Anniversary Love Celebration", h1: "Anniversary Love Celebration in Vadodara", metaTitle: "Anniversary Love Celebration Vadodara | Celebrate Your Bond", metaDescription: "Host an anniversary love celebration in Vadodara to honor your bond. Romantic setup at Friends Factory Cafe." },
+  { slug: "anniversary-couple-package-vadodara", title: "Anniversary Couple Package", h1: "Anniversary Couple Package in Vadodara", metaTitle: "Anniversary Couple Package Vadodara | All-Inclusive Deal", metaDescription: "Book an all-inclusive anniversary couple package in Vadodara with decorations, cake, and venue at Friends Factory Cafe." },
+  { slug: "anniversary-couple-venue-vadodara", title: "Anniversary Couple Venue", h1: "Best Anniversary Couple Venue in Vadodara", metaTitle: "Anniversary Couple Venue Vadodara | Private Space", metaDescription: "Find the best anniversary couple venue in Vadodara with private space and romantic ambiance at Friends Factory Cafe." },
+  { slug: "anniversary-date-plan-vadodara", title: "Anniversary Date Plan", h1: "Perfect Anniversary Date Plan in Vadodara", metaTitle: "Anniversary Date Plan Vadodara | Step-by-Step Guide", metaDescription: "Plan the perfect anniversary date in Vadodara step by step. Venue, decorations, and romantic setup at Friends Factory Cafe." },
+  { slug: "anniversary-romantic-evening-vadodara", title: "Anniversary Romantic Evening", h1: "Anniversary Romantic Evening in Vadodara", metaTitle: "Anniversary Romantic Evening Vadodara | Unforgettable Night", metaDescription: "Spend an unforgettable anniversary romantic evening in Vadodara with city views at Friends Factory Cafe." },
+  { slug: "anniversary-dinner-with-decoration-vadodara", title: "Anniversary Dinner with Decoration", h1: "Anniversary Dinner with Decoration in Vadodara", metaTitle: "Anniversary Dinner Decoration Vadodara | Beautiful Setup", metaDescription: "Enjoy anniversary dinner with beautiful decorations in Vadodara. Balloons, flowers, candles at Friends Factory Cafe." },
+  { slug: "anniversary-moonlight-dinner-vadodara", title: "Anniversary Moonlight Dinner", h1: "Anniversary Moonlight Dinner in Vadodara", metaTitle: "Anniversary Moonlight Dinner Vadodara | Romantic Night", metaDescription: "Experience a romantic anniversary moonlight dinner in Vadodara. Rooftop dining under the moon at Friends Factory Cafe." },
+  { slug: "anniversary-fairy-light-setup-vadodara", title: "Anniversary Fairy Light Setup", h1: "Anniversary Fairy Light Setup in Vadodara", metaTitle: "Anniversary Fairy Light Setup Vadodara | Twinkling Romance", metaDescription: "Get a magical anniversary fairy light setup in Vadodara. Twinkling ambiance at Friends Factory Cafe." },
+  { slug: "anniversary-rooftop-dinner-vadodara", title: "Anniversary Rooftop Dinner", h1: "Anniversary Rooftop Dinner in Vadodara", metaTitle: "Anniversary Rooftop Dinner Vadodara | Sky-High Romance", metaDescription: "Celebrate your anniversary with a rooftop dinner in Vadodara. City views and romantic ambiance at Friends Factory Cafe." },
+  { slug: "anniversary-surprise-for-soulmate-vadodara", title: "Anniversary Surprise for Soulmate", h1: "Anniversary Surprise for Soulmate in Vadodara", metaTitle: "Anniversary Surprise Soulmate Vadodara | Special Moments", metaDescription: "Surprise your soulmate on your anniversary in Vadodara with a romantic celebration at Friends Factory Cafe." },
+  { slug: "anniversary-candlelight-setup-vadodara", title: "Anniversary Candlelight Setup", h1: "Anniversary Candlelight Setup in Vadodara", metaTitle: "Anniversary Candlelight Setup Vadodara | Romantic Glow", metaDescription: "Get a romantic anniversary candlelight setup in Vadodara. Warm candle glow at Friends Factory Cafe." },
+  { slug: "anniversary-special-evening-vadodara", title: "Anniversary Special Evening", h1: "Anniversary Special Evening in Vadodara", metaTitle: "Anniversary Special Evening Vadodara | Perfect Night", metaDescription: "Plan a special anniversary evening in Vadodara with romantic setup and intimate dining at Friends Factory Cafe." },
+  { slug: "first-month-anniversary-vadodara", title: "First Month Anniversary", h1: "First Month Anniversary Celebration in Vadodara", metaTitle: "First Month Anniversary Vadodara | One Month of Love", metaDescription: "Celebrate your first month anniversary in Vadodara with a sweet romantic setup at Friends Factory Cafe." },
+  { slug: "2nd-anniversary-celebration-vadodara", title: "2nd Anniversary Celebration", h1: "2nd Cotton Anniversary Celebration in Vadodara", metaTitle: "2nd Anniversary Celebration Vadodara | Cotton Anniversary", metaDescription: "Celebrate your 2nd cotton anniversary in Vadodara with elegant decorations and romantic dining at Friends Factory Cafe." },
+  { slug: "3rd-anniversary-celebration-vadodara", title: "3rd Anniversary Celebration", h1: "3rd Leather Anniversary Celebration in Vadodara", metaTitle: "3rd Anniversary Celebration Vadodara | Leather Anniversary", metaDescription: "Mark 3 years of love with a 3rd anniversary celebration in Vadodara at Friends Factory Cafe." },
+  { slug: "7th-anniversary-celebration-vadodara", title: "7th Anniversary Celebration", h1: "7th Copper Anniversary Celebration in Vadodara", metaTitle: "7th Anniversary Celebration Vadodara | Copper Anniversary", metaDescription: "Celebrate your 7th copper anniversary in Vadodara with a special romantic celebration at Friends Factory Cafe." },
+  { slug: "40th-anniversary-celebration-vadodara", title: "40th Anniversary Celebration", h1: "40th Ruby Anniversary Celebration in Vadodara", metaTitle: "40th Anniversary Celebration Vadodara | Ruby Anniversary", metaDescription: "Celebrate 40 years of love with a ruby anniversary celebration in Vadodara at Friends Factory Cafe." },
+  { slug: "anniversary-dinner-booking-vadodara", title: "Anniversary Dinner Booking", h1: "Anniversary Dinner Booking in Vadodara", metaTitle: "Anniversary Dinner Booking Vadodara | Book Online", metaDescription: "Book your anniversary dinner in Vadodara online. Easy reservation for romantic celebration at Friends Factory Cafe." },
+  { slug: "anniversary-celebration-near-me-vadodara", title: "Anniversary Celebration Near Me", h1: "Anniversary Celebration Near Me in Vadodara", metaTitle: "Anniversary Celebration Near Me Vadodara | Local Venue", metaDescription: "Find anniversary celebration venues near you in Vadodara. Friends Factory Cafe in Gotri, Sevasi Canal Road." },
+  { slug: "couple-anniversary-celebration-vadodara", title: "Couple Anniversary Celebration", h1: "Couple Anniversary Celebration in Vadodara", metaTitle: "Couple Anniversary Celebration Vadodara | Romantic Setup", metaDescription: "Plan a beautiful couple anniversary celebration in Vadodara with romantic decorations and intimate ambiance at Friends Factory Cafe." }
 ];
 
 // ==================== VADODARA AREAS ====================
@@ -797,5 +830,21 @@ export const faqs = [
   {
     question: "What areas in Vadodara do you serve?",
     answer: "Our venue is centrally located in Gotri, Vadodara, and we welcome couples from all areas including Alkapuri, Akota, Fatehgunj, Sayajigunj, Manjalpur, and surrounding localities."
+  },
+  {
+    question: "What time slots are available for anniversary celebrations?",
+    answer: "We offer four time slots: Lunch (12 PM - 3 PM), Evening (4 PM - 7 PM), Dinner (7 PM - 10 PM), and Late Night (10 PM onwards). Each slot provides 3 hours of exclusive venue access. The Evening and Dinner slots are most popular for romantic anniversary celebrations."
+  },
+  {
+    question: "Can I plan a surprise anniversary celebration for my partner?",
+    answer: "Yes! Surprise celebrations are our specialty. Over 60% of our bookings are surprises. Our team coordinates secretly with you to set up everything before your partner arrives. We can arrange blindfolded entries, petal pathways, and custom welcome messages to make the surprise absolutely magical."
+  },
+  {
+    question: "What food and beverages are served during the anniversary dinner?",
+    answer: "All anniversary packages include welcome mocktails and refreshments. Our kitchen prepares a multi-course menu with both Indian and continental options. We accommodate vegetarian, vegan, and Jain dietary preferences. Each dish is freshly prepared and beautifully plated to complement your romantic celebration."
+  },
+  {
+    question: "Do you offer special packages for milestone anniversaries like 25th or 50th?",
+    answer: "Absolutely! We offer enhanced celebration setups for milestone anniversaries including your 1st, 5th, 10th, 25th Silver Jubilee, and 50th Golden Anniversary. These include premium decorations, upgraded dining, special cake designs, and extra personalization. Contact us to discuss your milestone and we will create something truly extraordinary."
   }
 ];

@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     description: 'Two decades of delicate beauty and strength. Celebrate your china anniversary in style.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/20th-anniversary-celebration-vadodara',
+  },
 };
 
 const chinaSignificance = {

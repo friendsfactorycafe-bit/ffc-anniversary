@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'Dine under the stars with panoramic city views. The most romantic rooftop celebration in Vadodara.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/rooftop-anniversary-vadodara',
+  },
 };
 
 const rooftopExperiences = [

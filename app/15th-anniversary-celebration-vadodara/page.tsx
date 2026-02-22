@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     description: 'Fifteen years of crystal-clear love. Celebrate with the brilliance your marriage deserves.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/15th-anniversary-celebration-vadodara',
+  },
 };
 
 const crystalSignificance = {

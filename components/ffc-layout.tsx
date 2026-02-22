@@ -37,18 +37,18 @@ export function FFCHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-rose-100">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-amber-100">
       <nav className="container mx-auto px-4 py-2">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex flex-col">
-            <span className="text-xl md:text-2xl font-serif font-bold text-rose-700 leading-tight">
+            <span className="text-xl md:text-2xl font-serif font-bold text-rose-900 leading-tight">
               Friends
             </span>
-            <span className="text-xl md:text-2xl font-serif font-bold text-rose-700 leading-tight">
+            <span className="text-xl md:text-2xl font-serif font-bold text-rose-900 leading-tight">
               Factory
             </span>
-            <span className="text-xl md:text-2xl font-serif font-bold text-rose-700 leading-tight">
+            <span className="text-xl md:text-2xl font-serif font-bold text-rose-900 leading-tight">
               Cafe
             </span>
           </Link>
@@ -59,7 +59,7 @@ export function FFCHeader() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-rose-600 font-medium transition-colors"
+                className="text-gray-700 hover:text-rose-800 font-medium transition-colors"
               >
                 {item.name}
               </Link>
@@ -70,12 +70,12 @@ export function FFCHeader() {
           <div className="flex items-center gap-4">
             {/* Phone CTA */}
             <div className="hidden md:flex items-center gap-3">
-              <Heart className="h-8 w-8 text-rose-500 fill-rose-500" />
+              <Heart className="h-8 w-8 text-amber-500 fill-amber-500" />
               <div className="text-right">
                 <p className="text-xs text-gray-500">Call and Book in Minutes</p>
                 <a 
                   href={`tel:${siteConfig.phone}`}
-                  className="text-lg font-bold text-rose-600 hover:text-rose-700"
+                  className="text-lg font-bold text-rose-800 hover:text-rose-900"
                 >
                   {siteConfig.phone}
                 </a>
@@ -92,7 +92,7 @@ export function FFCHeader() {
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <div className="flex flex-col h-full">
                   <div className="flex items-center justify-between py-4 border-b">
-                    <span className="font-serif font-bold text-rose-700 text-xl">
+                    <span className="font-serif font-bold text-rose-900 text-xl">
                       Friends Factory Cafe
                     </span>
                   </div>
@@ -104,7 +104,7 @@ export function FFCHeader() {
                           key={item.name}
                           href={item.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="block px-4 py-3 text-lg font-medium text-gray-700 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                          className="block px-4 py-3 text-lg font-medium text-gray-700 hover:text-rose-800 hover:bg-amber-50 rounded-lg transition-colors"
                         >
                           {item.name}
                         </Link>
@@ -117,7 +117,7 @@ export function FFCHeader() {
                   <div className="border-t py-4">
                     <a 
                       href={`tel:${siteConfig.phone}`}
-                      className="flex items-center gap-3 px-4 py-3 bg-rose-600 text-white rounded-lg hover:bg-rose-700 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 bg-rose-800 text-white rounded-lg hover:bg-rose-900 transition-colors"
                     >
                       <Phone className="h-5 w-5" />
                       <span className="font-medium">{siteConfig.phone}</span>
@@ -150,14 +150,14 @@ export function FFCFooter() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-serif font-bold text-rose-400 mb-4">
+            <h3 className="text-2xl font-serif font-bold text-amber-500 mb-4">
               Friends Factory Cafe
             </h3>
             <p className="text-gray-400 mb-6">
               {siteConfig.tagline}
             </p>
             <div className="flex items-center gap-2">
-              <Heart className="h-5 w-5 text-rose-500 fill-rose-500" />
+              <Heart className="h-5 w-5 text-amber-500 fill-amber-500" />
               <span className="text-gray-300">Couples Only Experience</span>
             </div>
           </div>
@@ -170,7 +170,7 @@ export function FFCFooter() {
                 <li key={item.name}>
                   <Link 
                     href={item.href}
-                    className="text-gray-400 hover:text-rose-400 transition-colors"
+                    className="text-gray-400 hover:text-amber-500 transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -187,7 +187,7 @@ export function FFCFooter() {
                 <li key={item.name}>
                   <Link 
                     href={item.href}
-                    className="text-gray-400 hover:text-rose-400 transition-colors"
+                    className="text-gray-400 hover:text-amber-500 transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -204,7 +204,7 @@ export function FFCFooter() {
                 <p className="text-gray-500 text-sm">Phone</p>
                 <a 
                   href={`tel:${siteConfig.phone}`}
-                  className="text-rose-400 font-medium hover:text-rose-300"
+                  className="text-amber-500 font-medium hover:text-amber-300"
                 >
                   {siteConfig.phone}
                 </a>
@@ -213,7 +213,7 @@ export function FFCFooter() {
                 <p className="text-gray-500 text-sm">Email</p>
                 <a 
                   href={`mailto:${siteConfig.email}`}
-                  className="text-rose-400 hover:text-rose-300"
+                  className="text-amber-500 hover:text-amber-300"
                 >
                   {siteConfig.email}
                 </a>
@@ -234,7 +234,7 @@ export function FFCFooter() {
               <Link 
                 key={keyword.slug}
                 href={`/${keyword.slug}`}
-                className="text-xs text-gray-500 hover:text-rose-400 transition-colors"
+                className="text-xs text-gray-500 hover:text-amber-500 transition-colors"
               >
                 {keyword.title}
               </Link>
@@ -243,7 +243,7 @@ export function FFCFooter() {
           {allKeywords.length > 10 && (
             <button 
               onClick={() => setShowAllKeywords(!showAllKeywords)}
-              className="mt-3 text-xs text-rose-400 hover:text-rose-300 flex items-center gap-1"
+              className="mt-3 text-xs text-amber-500 hover:text-amber-300 flex items-center gap-1"
             >
               {showAllKeywords ? (
                 <>Show Less <ChevronUp className="h-3 w-3" /></>
@@ -262,7 +262,7 @@ export function FFCFooter() {
               <Link 
                 key={area.slug}
                 href={`/${area.slug}`}
-                className="text-xs text-gray-500 hover:text-rose-400 transition-colors"
+                className="text-xs text-gray-500 hover:text-amber-500 transition-colors"
               >
                 {area.name}
               </Link>
@@ -271,7 +271,7 @@ export function FFCFooter() {
           {vadodaraAreas.length > 15 && (
             <button 
               onClick={() => setShowAllAreas(!showAllAreas)}
-              className="mt-3 text-xs text-rose-400 hover:text-rose-300 flex items-center gap-1"
+              className="mt-3 text-xs text-amber-500 hover:text-amber-300 flex items-center gap-1"
             >
               {showAllAreas ? (
                 <>Show Less <ChevronUp className="h-3 w-3" /></>

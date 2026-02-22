@@ -13,7 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { FFCHeader, FFCFooter } from '@/components/ffc-layout';
-import { FFCBookingForm, FFCWhatsAppFloat } from '@/components/ffc-booking-form';
+import { FFCBookingForm, FFCBookingFormInner, FFCWhatsAppFloat } from '@/components/ffc-booking-form';
 import { siteConfig, packages, serviceCategories, vadodaraAreas, formatPrice, getAllBlogPosts, BlogPost } from '@/lib/ffc-config';
 
 // Experience features
@@ -84,58 +84,60 @@ const faqs = [
   }
 ];
 
-// Gallery items data - All images and videos with SEO-friendly names
+// Gallery items data - Real images and videos from /public/images/gallery
 const galleryItems = [
-  // Featured Images
-  { type: 'image', src: '/images/gallery/rooftop-romantic-setup-vadodara-1.jpg', alt: 'Romantic rooftop setup in Vadodara', title: 'Romantic Rooftop', subtitle: 'Premium Package', featured: true },
-  { type: 'image', src: '/images/gallery/romantic-rooftop-candlelight-dinner-vadodara-1.jpg', alt: 'Candlelight dinner in Vadodara', title: 'Candlelight Dinner', featured: false },
-  { type: 'image', src: '/images/gallery/candlelight-dinner-setup-vadodara-1.jpg', alt: 'Romantic dinner setup Vadodara', title: 'Evening Romance', featured: false },
-  { type: 'video', src: '/videos/birthday-celebration-video-vadodara-1.mp4', thumbnail: '/images/video-thumbnails/birthday-celebration-video-vadodara-1-thumb.jpg', alt: 'Birthday celebration video Vadodara', title: 'Birthday Celebration', featured: false },
-  { type: 'image', src: '/images/gallery/birthday-surprise-decoration-vadodara-1.jpg', alt: 'Birthday surprise decoration Vadodara', title: 'Birthday Surprise', featured: false },
-  { type: 'image', src: '/images/gallery/anniversary-celebration-vadodara-1.jpg', alt: 'Anniversary celebration Vadodara', title: 'Anniversary Special', featured: false },
-  { type: 'video', src: '/videos/anniversary-celebration-video-vadodara-1.mp4', thumbnail: '/images/video-thumbnails/anniversary-celebration-video-vadodara-1-thumb.jpg', alt: 'Anniversary celebration video Vadodara', title: 'Anniversary Video', featured: false },
-  { type: 'image', src: '/images/gallery/romantic-table-decoration-vadodara-1.jpg', alt: 'Romantic table decoration Vadodara', title: 'Table Decor', featured: false },
-  { type: 'image', src: '/images/gallery/birthday-balloon-decoration-vadodara-1.jpg', alt: 'Birthday balloon decoration Vadodara', title: 'Balloon Decoration', featured: false },
-  { type: 'image', src: '/images/gallery/anniversary-dinner-setup-vadodara-1.jpg', alt: 'Anniversary dinner setup Vadodara', title: 'Anniversary Dinner', featured: false },
-  { type: 'video', src: '/videos/rooftop-celebration-reel-vadodara-1.mp4', thumbnail: '/images/video-thumbnails/rooftop-celebration-reel-vadodara-1-thumb.jpg', alt: 'Rooftop celebration reel Vadodara', title: 'Rooftop Vibes', featured: false },
-  { type: 'image', src: '/images/gallery/romantic-ambiance-cafe-vadodara-1.jpg', alt: 'Romantic ambiance cafe Vadodara', title: 'Romantic Ambiance', featured: false },
-  { type: 'image', src: '/images/gallery/couple-celebration-vadodara-1.jpg', alt: 'Couple celebration Vadodara', title: 'Couple Moment', featured: false },
-  { type: 'image', src: '/images/gallery/evening-romantic-celebration-vadodara-1.jpg', alt: 'Evening romantic celebration Vadodara', title: 'Evening Magic', featured: false },
-  { type: 'video', src: '/videos/birthday-reel-vadodara-1.mp4', thumbnail: '/images/video-thumbnails/birthday-reel-vadodara-1-thumb.jpg', alt: 'Birthday reel Vadodara', title: 'Birthday Reel', featured: false },
-  { type: 'image', src: '/images/gallery/glass-house-dinner-vadodara-1.jpg', alt: 'Glass house dinner Vadodara', title: 'Glass House', featured: false },
-  { type: 'image', src: '/images/gallery/night-romantic-setup-vadodara-1.jpg', alt: 'Night romantic setup Vadodara', title: 'Night Setup', featured: false },
-  { type: 'video', src: '/videos/romantic-moments-reel-vadodara-1.mp4', thumbnail: '/images/video-thumbnails/romantic-moments-reel-vadodara-1-thumb.jpg', alt: 'Romantic moments reel Vadodara', title: 'Romantic Reel', featured: false },
-  { type: 'image', src: '/images/gallery/proposal-setup-vadodara-1.jpg', alt: 'Proposal setup Vadodara', title: 'Proposal Setup', featured: false },
-  { type: 'image', src: '/images/gallery/day-celebration-vadodara-1.jpg', alt: 'Day celebration Vadodara', title: 'Day Celebration', featured: false },
-  { type: 'video', src: '/videos/anniversary-dinner-video-vadodara-1.mp4', thumbnail: '/images/video-thumbnails/anniversary-dinner-video-vadodara-1-thumb.jpg', alt: 'Anniversary dinner video Vadodara', title: 'Anniversary Moments', featured: false },
-  { type: 'image', src: '/images/gallery/surprise-party-vadodara-1.jpg', alt: 'Surprise party Vadodara', title: 'Surprise Party', featured: false },
-  { type: 'image', src: '/images/gallery/romantic-dinner-date-vadodara-1.jpg', alt: 'Romantic dinner date Vadodara', title: 'Dinner Date', featured: false },
-  { type: 'video', src: '/videos/birthday-surprise-video-vadodara-1.mp4', thumbnail: '/images/video-thumbnails/birthday-surprise-video-vadodara-1-thumb.jpg', alt: 'Birthday surprise video Vadodara', title: 'Birthday Surprise', featured: false },
-  { type: 'image', src: '/images/gallery/valentines-day-celebration-vadodara-1.jpg', alt: 'Valentines day celebration Vadodara', title: 'Valentine Setup', featured: false },
-  { type: 'image', src: '/images/gallery/valentines-dinner-vadodara-1.jpg', alt: 'Valentines dinner Vadodara', title: 'Valentine Dinner', featured: false },
-  { type: 'video', src: '/videos/valentines-celebration-video-vadodara-1.mp4', thumbnail: '/images/video-thumbnails/valentines-celebration-video-vadodara-1-thumb.jpg', alt: 'Valentines celebration video Vadodara', title: 'Valentine Video', featured: false },
-  { type: 'image', src: '/images/gallery/valentines-romantic-setup-vadodara-1.jpg', alt: 'Valentines romantic setup Vadodara', title: 'Valentine Romance', featured: false },
-  { type: 'image', src: '/images/gallery/birthday-surprise-for-girlfriend-vadodara-1.jpg', alt: 'Birthday surprise for girlfriend Vadodara', title: 'Girlfriend Surprise', featured: false },
-  { type: 'video', src: '/videos/baby-moments-video-vadodara-1.mp4', thumbnail: '/images/video-thumbnails/baby-moments-video-vadodara-1-thumb.jpg', alt: 'Baby moments video Vadodara', title: 'Baby Moments', featured: false },
-  { type: 'image', src: '/images/gallery/birthday-surprise-for-boyfriend-vadodara-1.jpg', alt: 'Birthday surprise for boyfriend Vadodara', title: 'Boyfriend Surprise', featured: false },
-  { type: 'image', src: '/images/gallery/birthday-room-decoration-vadodara-1.jpg', alt: 'Birthday room decoration Vadodara', title: 'Room Decoration', featured: false },
-  { type: 'video', src: '/videos/pre-wedding-couple-video-vadodara-1.mp4', thumbnail: '/images/video-thumbnails/pre-wedding-couple-video-vadodara-1-thumb.jpg', alt: 'Pre-wedding couple video Vadodara', title: 'Pre-Wedding Video', featured: false },
-  { type: 'image', src: '/images/gallery/couple-birthday-party-vadodara-1.jpg', alt: 'Couple birthday party Vadodara', title: 'Birthday Party', featured: false },
-  { type: 'image', src: '/images/gallery/surprise-date-vadodara-1.jpg', alt: 'Surprise date Vadodara', title: 'Surprise Date', featured: false },
-  { type: 'video', src: '/videos/pre-wedding-shoot-video-vadodara-1.mp4', thumbnail: '/images/video-thumbnails/pre-wedding-shoot-video-vadodara-1-thumb.jpg', alt: 'Pre-wedding shoot video Vadodara', title: 'Pre-Wedding Shoot', featured: false },
-  { type: 'image', src: '/images/gallery/couple-moment-vadodara-1.jpg', alt: 'Couple moment Vadodara', title: 'Couple Moment', featured: false },
-  { type: 'image', src: '/images/gallery/pre-wedding-photoshoot-vadodara-1.jpg', alt: 'Pre-wedding photoshoot Vadodara', title: 'Pre-Wedding Photo', featured: false },
-  { type: 'video', src: '/videos/romantic-dinner-video-vadodara-1.mp4', thumbnail: '/images/video-thumbnails/romantic-dinner-video-vadodara-1-thumb.jpg', alt: 'Romantic dinner video Vadodara', title: 'Romantic Dinner', featured: false },
-  { type: 'image', src: '/images/gallery/pre-wedding-shoot-vadodara-1.jpg', alt: 'Pre-wedding shoot Vadodara', title: 'Photo Shoot', featured: false },
-  { type: 'image', src: '/images/gallery/baby-shower-decoration-vadodara-1.jpg', alt: 'Baby shower decoration Vadodara', title: 'Baby Shower', featured: false },
-  { type: 'video', src: '/videos/proposal-video-vadodara-1.mp4', thumbnail: '/images/video-thumbnails/proposal-video-vadodara-1-thumb.jpg', alt: 'Proposal video Vadodara', title: 'Proposal Video', featured: false },
-  { type: 'image', src: '/images/gallery/baby-moments-celebration-vadodara-1.jpg', alt: 'Baby moments celebration Vadodara', title: 'Baby Moments', featured: false },
-  { type: 'image', src: '/images/gallery/candlelight-dinner-for-couples-vadodara-1.jpg', alt: 'Candlelight dinner for couples Vadodara', title: 'Couple Dinner', featured: false },
-  { type: 'video', src: '/videos/couple-celebration-video-vadodara-1.mp4', thumbnail: '/images/video-thumbnails/couple-celebration-video-vadodara-1-thumb.jpg', alt: 'Couple celebration video Vadodara', title: 'Celebration Video', featured: false },
-  { type: 'image', src: '/images/gallery/rooftop-dinner-vadodara-1.jpg', alt: 'Rooftop dinner Vadodara', title: 'Rooftop Dinner', featured: false },
-  { type: 'image', src: '/images/gallery/private-dining-vadodara-1.jpg', alt: 'Private dining Vadodara', title: 'Private Dining', featured: false },
-  { type: 'image', src: '/images/gallery/romantic-venue-vadodara-1.jpg', alt: 'Romantic venue Vadodara', title: 'Romantic Venue', featured: false },
-  { type: 'image', src: '/images/gallery/celebration-venue-vadodara-1.jpg', alt: 'Celebration venue Vadodara', title: 'Celebration Venue', featured: false },
+  // Featured Anniversary Photos
+  { type: 'image', src: '/images/gallery/IMG_20251108_195907946.jpg', alt: 'Romantic anniversary celebration setup Vadodara', title: 'Anniversary Setup', subtitle: 'Premium Package', featured: true },
+  { type: 'image', src: '/images/gallery/IMG_20251108_195914428.jpg', alt: 'Anniversary dinner decoration Vadodara', title: 'Romantic Dinner', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251108_195959576.jpg', alt: 'Anniversary candlelight setup Vadodara', title: 'Candlelight Setup', featured: false },
+  { type: 'video', src: '/images/gallery/1000330054.mp4', thumbnail: '/images/video-thumbnails/anniversary-celebration-video-vadodara-1-thumb.jpg', alt: 'Anniversary celebration video Vadodara', title: 'Anniversary Celebration', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251108_200130169.jpg', alt: 'Romantic anniversary venue Vadodara', title: 'Romantic Venue', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251117_201140680.jpg', alt: 'Anniversary surprise decoration Vadodara', title: 'Anniversary Surprise', featured: false },
+  { type: 'video', src: '/images/gallery/1000330055.mp4', thumbnail: '/images/video-thumbnails/romantic-dinner-video-vadodara-1-thumb.jpg', alt: 'Romantic anniversary dinner video Vadodara', title: 'Anniversary Dinner Video', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251117_201157039.jpg', alt: 'Anniversary table decoration Vadodara', title: 'Table Decoration', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251126_195504828.jpg', alt: 'Anniversary celebration in Vadodara', title: 'Evening Celebration', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251126_195520782.jpg', alt: 'Romantic anniversary ambiance Vadodara', title: 'Romantic Ambiance', featured: false },
+  { type: 'video', src: '/images/gallery/1000330059.mp4', thumbnail: '/images/video-thumbnails/rooftop-celebration-reel-vadodara-1-thumb.jpg', alt: 'Anniversary rooftop celebration video Vadodara', title: 'Rooftop Celebration', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251126_195542577.jpg', alt: 'Anniversary couple celebration Vadodara', title: 'Couple Moment', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251126_195913666.jpg', alt: 'Anniversary evening setup Vadodara', title: 'Evening Setup', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251126_195930910 (1).jpg', alt: 'Anniversary party decoration Vadodara', title: 'Party Decor', featured: false },
+  { type: 'video', src: '/images/gallery/reel-.mp4', thumbnail: '/images/video-thumbnails/romantic-moments-reel-vadodara-1-thumb.jpg', alt: 'Anniversary celebration reel Vadodara', title: 'Anniversary Reel', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251126_195948095.jpg', alt: 'Romantic anniversary night Vadodara', title: 'Night Romance', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251126_200041024.jpg', alt: 'Anniversary surprise for couple Vadodara', title: 'Couple Surprise', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251130_190628327.jpg', alt: 'Anniversary private dining Vadodara', title: 'Private Dining', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251130_190653723.jpg', alt: 'Anniversary romantic dinner Vadodara', title: 'Dinner Date', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251201_201429116.jpg', alt: 'Anniversary glass house celebration Vadodara', title: 'Glass House', featured: false },
+  { type: 'video', src: '/images/gallery/VID-20250416-WA0010.mp4', thumbnail: '/images/video-thumbnails/surprise-party-video-vadodara-1-thumb.jpg', alt: 'Anniversary surprise video Vadodara', title: 'Surprise Video', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251201_201504639.jpg', alt: 'Anniversary rooftop dinner Vadodara', title: 'Rooftop Dinner', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251201_201519850.jpg', alt: 'Anniversary venue decoration Vadodara', title: 'Venue Decor', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251203_202600922.jpg', alt: 'Anniversary night setup Vadodara', title: 'Night Setup', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251209_193815280.jpg', alt: 'Anniversary candlelight dinner Vadodara', title: 'Candlelight Dinner', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251213_191903856.jpg', alt: 'Anniversary celebration for husband Vadodara', title: 'Husband Surprise', featured: false },
+  { type: 'video', src: '/images/gallery/VID-20250425-WA0024.mp4', thumbnail: '/images/video-thumbnails/couple-celebration-video-vadodara-1-thumb.jpg', alt: 'Anniversary celebration moments Vadodara', title: 'Anniversary Moments', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251213_191910048.jpg', alt: 'Anniversary celebration for wife Vadodara', title: 'Wife Surprise', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_20251226_190325218.jpg', alt: 'Anniversary special evening Vadodara', title: 'Special Evening', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_3672.jpg', alt: 'Romantic anniversary setup Vadodara', title: 'Romantic Setup', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_3688.JPG', alt: 'Anniversary photoshoot Vadodara', title: 'Anniversary Photo', featured: false },
+  { type: 'image', src: '/images/gallery/IMG_7626.jpg', alt: 'Anniversary venue Vadodara', title: 'Our Venue', featured: false },
+  { type: 'video', src: '/images/gallery/Yash And Tulsi .mp4', thumbnail: '/images/video-thumbnails/anniversary-dinner-video-vadodara-1-thumb.jpg', alt: 'Couple anniversary celebration video Vadodara', title: 'Couple Celebration', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20241204-WA0066.jpg', alt: 'Anniversary party in Vadodara', title: 'Anniversary Party', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20241204-WA0070.jpg', alt: 'Anniversary balloon decoration Vadodara', title: 'Balloon Decor', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250123-WA0014.jpg', alt: 'Anniversary rooftop celebration Vadodara', title: 'Rooftop Celebration', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250123-WA0018.jpg', alt: 'Anniversary candlelight setup for couples', title: 'Couple Setup', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250123-WA0020.jpg', alt: 'Anniversary dinner date Vadodara', title: 'Dinner Date', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250123-WA0022.jpg', alt: 'Anniversary celebration venue Vadodara', title: 'Celebration Venue', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250207-WA0012.jpg', alt: 'Valentine anniversary celebration Vadodara', title: 'Valentine Special', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250207-WA0014.jpg', alt: 'Anniversary couple moment Vadodara', title: 'Couple Moment', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250209-WA0012.jpg', alt: 'Romantic anniversary setup Vadodara', title: 'Romantic Setup', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250209-WA0016.jpg', alt: 'Anniversary decoration Vadodara', title: 'Anniversary Decor', featured: false },
+  { type: 'image', src: '/images/gallery/IMG-20250209-WA0018.jpg', alt: 'Anniversary evening celebration Vadodara', title: 'Evening Moment', featured: false },
+  { type: 'image', src: '/images/gallery/10.jpg', alt: 'Anniversary celebration at Friends Factory Cafe Vadodara', title: 'Classic Setup', featured: false },
+  { type: 'image', src: '/images/gallery/13.jpg', alt: 'Romantic anniversary venue Vadodara', title: 'Venue View', featured: false },
+  { type: 'image', src: '/images/gallery/2-1.jpg', alt: 'Anniversary candlelight dinner Vadodara', title: 'Candlelight', featured: false },
+  { type: 'image', src: '/images/gallery/3-1.jpg', alt: 'Anniversary rooftop setup Vadodara', title: 'Rooftop', featured: false },
+  { type: 'image', src: '/images/gallery/4-1.jpg', alt: 'Anniversary glass house dinner Vadodara', title: 'Glass House', featured: false },
+  { type: 'image', src: '/images/gallery/5.jpg', alt: 'Anniversary private dining Vadodara', title: 'Private Setup', featured: false },
+  { type: 'image', src: '/images/gallery/6.jpg', alt: 'Anniversary surprise decoration Vadodara', title: 'Surprise Decor', featured: false },
 ];
 
 // Gallery Section Component
@@ -153,10 +155,10 @@ function GallerySection() {
   const videoCount = galleryItems.filter(item => item.type === 'video').length;
 
   return (
-    <section className="py-20 bg-gradient-to-br from-rose-50 via-white to-pink-50">
+    <section className="py-20 bg-gradient-to-br from-amber-50 via-white to-amber-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
-          <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+          <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
             <ImageIcon className="h-4 w-4 mr-2" /> Our Gallery
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-serif">
@@ -173,8 +175,8 @@ function GallerySection() {
             variant={activeFilter === 'all' ? 'default' : 'outline'}
             onClick={() => setActiveFilter('all')}
             className={activeFilter === 'all' 
-              ? 'bg-rose-500 hover:bg-rose-600 text-white' 
-              : 'border-rose-300 text-rose-700 hover:bg-rose-50'}
+              ? 'bg-amber-500 hover:bg-rose-800 text-white' 
+              : 'border-amber-300 text-rose-900 hover:bg-amber-50'}
           >
             <Sparkles className="h-4 w-4 mr-2" />
             All ({galleryItems.length})
@@ -183,8 +185,8 @@ function GallerySection() {
             variant={activeFilter === 'photos' ? 'default' : 'outline'}
             onClick={() => setActiveFilter('photos')}
             className={activeFilter === 'photos' 
-              ? 'bg-rose-500 hover:bg-rose-600 text-white' 
-              : 'border-rose-300 text-rose-700 hover:bg-rose-50'}
+              ? 'bg-amber-500 hover:bg-rose-800 text-white' 
+              : 'border-amber-300 text-rose-900 hover:bg-amber-50'}
           >
             <ImageIcon className="h-4 w-4 mr-2" />
             Photos ({photoCount})
@@ -193,8 +195,8 @@ function GallerySection() {
             variant={activeFilter === 'videos' ? 'default' : 'outline'}
             onClick={() => setActiveFilter('videos')}
             className={activeFilter === 'videos' 
-              ? 'bg-rose-500 hover:bg-rose-600 text-white' 
-              : 'border-rose-300 text-rose-700 hover:bg-rose-50'}
+              ? 'bg-amber-500 hover:bg-rose-800 text-white' 
+              : 'border-amber-300 text-rose-900 hover:bg-amber-50'}
           >
             <Play className="h-4 w-4 mr-2" />
             Videos ({videoCount})
@@ -241,7 +243,7 @@ function GallerySection() {
                   />
                   <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/10 transition-colors">
                     <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Play className="h-5 w-5 text-rose-600 ml-1" fill="currentColor" />
+                      <Play className="h-5 w-5 text-rose-800 ml-1" fill="currentColor" />
                     </div>
                   </div>
                   <div className="absolute bottom-3 left-3 text-white opacity-0 group-hover:opacity-100 transition-opacity">
@@ -256,7 +258,7 @@ function GallerySection() {
         {/* View More Button */}
         <div className="text-center mt-10">
           <Link href="/virtual-tour">
-            <Button className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white px-8 py-6 text-lg">
+            <Button className="bg-gradient-to-r from-amber-500 to-amber-500 hover:from-rose-800 hover:to-amber-600 text-white px-8 py-6 text-lg">
               <Camera className="h-5 w-5 mr-2" />
               View Virtual Tour
               <ArrowRight className="h-5 w-5 ml-2" />
@@ -276,7 +278,7 @@ function BlogSection() {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+          <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
             Our Blog
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-serif">
@@ -291,7 +293,7 @@ function BlogSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {posts.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`}>
-              <Card className="overflow-hidden h-full hover:shadow-lg transition-all duration-300 group border-rose-100">
+              <Card className="overflow-hidden h-full hover:shadow-lg transition-all duration-300 group border-amber-100">
                 <div className="relative h-48">
                   <Image
                     src={post.coverImage}
@@ -299,12 +301,12 @@ function BlogSection() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <Badge className="absolute top-3 left-3 bg-rose-500 text-white">
+                  <Badge className="absolute top-3 left-3 bg-amber-500 text-white">
                     {post.category}
                   </Badge>
                 </div>
                 <CardContent className="p-5">
-                  <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-rose-600 transition-colors">
+                  <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-rose-800 transition-colors">
                     {post.title}
                   </h3>
                   <p className="text-sm text-gray-600 mb-4 line-clamp-2">
@@ -332,7 +334,7 @@ function BlogSection() {
         {/* View More Button */}
         <div className="text-center">
           <Link href="/blog">
-            <Button className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white px-8 py-6 text-lg">
+            <Button className="bg-gradient-to-r from-amber-500 to-amber-500 hover:from-rose-800 hover:to-amber-600 text-white px-8 py-6 text-lg">
               View More Articles
               <ArrowRight className="h-5 w-5 ml-2" />
             </Button>
@@ -377,7 +379,7 @@ export default function FFCHomePage() {
       <FFCHeader />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-rose-600 via-pink-500 to-rose-700 text-white overflow-hidden">
+      <section className="relative bg-gradient-to-br from-rose-800 via-amber-500 to-rose-900 text-white overflow-hidden">
         {/* Background Image Slider */}
         <div className="absolute inset-0">
           {heroSlides.map((slide, index) => (
@@ -431,7 +433,7 @@ export default function FFCHomePage() {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Link href="/packages">
-                  <Button size="lg" className="bg-white text-rose-600 hover:bg-rose-50 text-lg px-8 py-6 w-full sm:w-auto">
+                  <Button size="lg" className="bg-white text-rose-800 hover:bg-amber-50 text-lg px-8 py-6 w-full sm:w-auto">
                     <Gift className="h-5 w-5 mr-2" />
                     View Packages
                   </Button>
@@ -459,24 +461,24 @@ export default function FFCHomePage() {
             
             {/* Hero Booking Form */}
             <div className="hidden lg:block">
-              <FFCBookingForm variant="hero" />
+              <FFCBookingFormInner variant="hero" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Mobile Booking Form */}
-      <section className="lg:hidden bg-rose-50 py-8">
+      <section className="lg:hidden bg-amber-50 py-8">
         <div className="container mx-auto px-4">
-          <FFCBookingForm />
+          <FFCBookingFormInner />
         </div>
       </section>
 
       {/* Packages Section */}
-      <section className="py-12 md:py-20 bg-gradient-to-b from-rose-50 to-white">
+      <section className="py-12 md:py-20 bg-gradient-to-b from-amber-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 md:mb-16">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               Our Packages
             </Badge>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 font-serif">
@@ -490,26 +492,26 @@ export default function FFCHomePage() {
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
             {packages.map((pkg, index) => (
               <Link key={pkg.id} href={`/packages/${pkg.slug}`}>
-                <Card className="h-full hover:shadow-xl transition-all hover:-translate-y-1 border-rose-100 group overflow-hidden">
-                  <div className="aspect-square bg-gradient-to-br from-rose-100 to-pink-100 relative overflow-hidden">
+                <Card className="h-full hover:shadow-xl transition-all hover:-translate-y-1 border-amber-100 group overflow-hidden">
+                  <div className="aspect-square bg-gradient-to-br from-amber-100 to-amber-100 relative overflow-hidden">
                     <Image
                       src={pkg.thumbnail}
                       alt={pkg.name}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <Badge className="absolute top-2 left-2 bg-rose-600 text-white text-xs">
+                    <Badge className="absolute top-2 left-2 bg-rose-800 text-white text-xs">
                       Setup {index + 1}
                     </Badge>
                   </div>
                   <CardContent className="p-2 md:p-4">
-                    <h3 className="font-semibold text-sm md:text-lg mb-1 group-hover:text-rose-600 transition-colors line-clamp-2">
+                    <h3 className="font-semibold text-sm md:text-lg mb-1 group-hover:text-rose-800 transition-colors line-clamp-2">
                       {pkg.name}
                     </h3>
                     <p className="text-gray-600 text-xs md:text-sm line-clamp-2 mb-2 hidden md:block">
                       {pkg.shortDescription}
                     </p>
-                    <p className="text-base md:text-xl font-bold text-rose-600">
+                    <p className="text-base md:text-xl font-bold text-rose-800">
                       {formatPrice(pkg.price)}
                     </p>
                   </CardContent>
@@ -520,7 +522,7 @@ export default function FFCHomePage() {
           
           <div className="text-center mt-6 md:mt-10">
             <Link href="/packages">
-              <Button size="lg" className="bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white">
+              <Button size="lg" className="bg-gradient-to-r from-rose-800 to-amber-600 hover:from-rose-900 hover:to-amber-700 text-white">
                 View All Packages <ArrowRight className="h-5 w-5 ml-2" />
               </Button>
             </Link>
@@ -532,7 +534,7 @@ export default function FFCHomePage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               Our Services
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 font-serif">
@@ -545,7 +547,7 @@ export default function FFCHomePage() {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {serviceCategories.map((service) => (
-              <Card key={service.slug} className="h-full border-rose-100">
+              <Card key={service.slug} className="h-full border-amber-100">
                 <CardContent className="p-4 md:p-6 text-center">
                   <div className="text-3xl md:text-4xl mb-3 md:mb-4">{service.emoji}</div>
                   <h3 className="font-semibold text-sm md:text-lg mb-1 md:mb-2 line-clamp-2">
@@ -565,7 +567,7 @@ export default function FFCHomePage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               What You Get
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 font-serif">
@@ -576,8 +578,8 @@ export default function FFCHomePage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {experienceFeatures.map((feature, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center mx-auto mb-4">
-                  <feature.icon className="h-8 w-8 text-rose-600" />
+                <div className="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-4">
+                  <feature.icon className="h-8 w-8 text-rose-800" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
                 <p className="text-gray-600 text-sm">{feature.description}</p>
@@ -592,7 +594,7 @@ export default function FFCHomePage() {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <Badge className="mb-4 bg-rose-500/20 text-rose-400 border-rose-500/30">
+              <Badge className="mb-4 bg-amber-500/20 text-amber-500 border-amber-500/30">
                 Our Menu
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 font-serif">
@@ -604,8 +606,8 @@ export default function FFCHomePage() {
               
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center flex-shrink-0">
-                    <Wine className="h-5 w-5 text-rose-400" />
+                  <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                    <Wine className="h-5 w-5 text-amber-500" />
                   </div>
                   <div>
                     <h4 className="font-semibold">Welcome Drink</h4>
@@ -614,8 +616,8 @@ export default function FFCHomePage() {
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center flex-shrink-0">
-                    <Utensils className="h-5 w-5 text-rose-400" />
+                  <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                    <Utensils className="h-5 w-5 text-amber-500" />
                   </div>
                   <div>
                     <h4 className="font-semibold">Cheese Fondue</h4>
@@ -624,8 +626,8 @@ export default function FFCHomePage() {
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center flex-shrink-0">
-                    <Gift className="h-5 w-5 text-rose-400" />
+                  <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                    <Gift className="h-5 w-5 text-amber-500" />
                   </div>
                   <div>
                     <h4 className="font-semibold">Dessert with Chocolate Bite</h4>
@@ -635,7 +637,7 @@ export default function FFCHomePage() {
               </div>
               
               <Link href="/menu" className="inline-block mt-8">
-                <Button size="lg" className="bg-rose-500 hover:bg-rose-600 text-white">
+                <Button size="lg" className="bg-amber-500 hover:bg-rose-800 text-white">
                   View Full Menu <ArrowRight className="h-5 w-5 ml-2" />
                 </Button>
               </Link>
@@ -657,10 +659,10 @@ export default function FFCHomePage() {
       </section>
 
       {/* Areas We Serve */}
-      <section className="py-20 bg-rose-50">
+      <section className="py-20 bg-amber-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <MapPin className="h-4 w-4 mr-2" /> Areas We Serve
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 font-serif">
@@ -676,7 +678,7 @@ export default function FFCHomePage() {
               <Link 
                 key={area.slug}
                 href={`/${area.slug}`}
-                className="px-4 py-2 bg-white rounded-full text-gray-700 hover:bg-rose-600 hover:text-white transition-colors border border-rose-200"
+                className="px-4 py-2 bg-white rounded-full text-gray-700 hover:bg-rose-800 hover:text-white transition-colors border border-amber-200"
               >
                 {area.name}
               </Link>
@@ -686,7 +688,7 @@ export default function FFCHomePage() {
       </section>
 
       {/* Google Reviews Slider */}
-      <section className="py-16 md:py-20 bg-rose-50 overflow-hidden">
+      <section className="py-16 md:py-20 bg-amber-50 overflow-hidden">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
             <div>
@@ -716,7 +718,7 @@ export default function FFCHomePage() {
               <p className="text-base font-bold text-gray-800 mb-2">EXCELLENT</p>
               <div className="flex gap-0.5 mb-2">
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <Star key={star} className="h-5 w-5 fill-rose-400 text-rose-400" />
+                  <Star key={star} className="h-5 w-5 fill-amber-500 text-amber-500" />
                 ))}
               </div>
               <p className="text-gray-600 text-sm mb-3">Based on <strong>1256 reviews</strong></p>
@@ -770,7 +772,7 @@ export default function FFCHomePage() {
                       </svg>
                     </div>
                     <div className="flex gap-0.5 mb-2">
-                      {[1, 2, 3, 4, 5].map((star) => (<Star key={star} className="h-3 w-3 fill-rose-400 text-rose-400" />))}
+                      {[1, 2, 3, 4, 5].map((star) => (<Star key={star} className="h-3 w-3 fill-amber-500 text-amber-500" />))}
                       <span className="ml-1 text-cyan-500 text-xs">✓</span>
                     </div>
                     <p className="text-gray-600 text-xs leading-relaxed line-clamp-3">Such a great time!!!! Thanks to my hubby and the team of friends factory cafe!!!</p>
@@ -794,7 +796,7 @@ export default function FFCHomePage() {
                       </svg>
                     </div>
                     <div className="flex gap-0.5 mb-2">
-                      {[1, 2, 3, 4, 5].map((star) => (<Star key={star} className="h-3 w-3 fill-rose-400 text-rose-400" />))}
+                      {[1, 2, 3, 4, 5].map((star) => (<Star key={star} className="h-3 w-3 fill-amber-500 text-amber-500" />))}
                       <span className="ml-1 text-cyan-500 text-xs">✓</span>
                     </div>
                     <p className="text-gray-600 text-xs leading-relaxed line-clamp-3">The place was calm and peace, food was awesome, will be back soon 🍽️</p>
@@ -818,7 +820,7 @@ export default function FFCHomePage() {
                       </svg>
                     </div>
                     <div className="flex gap-0.5 mb-2">
-                      {[1, 2, 3, 4, 5].map((star) => (<Star key={star} className="h-3 w-3 fill-rose-400 text-rose-400" />))}
+                      {[1, 2, 3, 4, 5].map((star) => (<Star key={star} className="h-3 w-3 fill-amber-500 text-amber-500" />))}
                       <span className="ml-1 text-cyan-500 text-xs">✓</span>
                     </div>
                     <p className="text-gray-600 text-xs leading-relaxed line-clamp-3">Cutest set up and amazing food service.</p>
@@ -842,7 +844,7 @@ export default function FFCHomePage() {
                       </svg>
                     </div>
                     <div className="flex gap-0.5 mb-2">
-                      {[1, 2, 3, 4, 5].map((star) => (<Star key={star} className="h-3 w-3 fill-rose-400 text-rose-400" />))}
+                      {[1, 2, 3, 4, 5].map((star) => (<Star key={star} className="h-3 w-3 fill-amber-500 text-amber-500" />))}
                       <span className="ml-1 text-cyan-500 text-xs">✓</span>
                     </div>
                     <p className="text-gray-600 text-xs leading-relaxed line-clamp-3">Best candlelight dinner experience in Vadodara! The decoration was stunning. Proposed here and she said YES! 💍</p>
@@ -853,7 +855,7 @@ export default function FFCHomePage() {
                 <Card className="snap-start border-gray-200 bg-white h-full flex-shrink-0 w-[220px]">
                   <CardContent className="p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <div className="w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center text-white font-semibold text-sm">P</div>
+                      <div className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-white font-semibold text-sm">P</div>
                       <div className="flex-1 min-w-0">
                         <p className="font-semibold text-sm truncate">Priya Shah</p>
                         <p className="text-xs text-gray-500">2 months ago</p>
@@ -866,7 +868,7 @@ export default function FFCHomePage() {
                       </svg>
                     </div>
                     <div className="flex gap-0.5 mb-2">
-                      {[1, 2, 3, 4, 5].map((star) => (<Star key={star} className="h-3 w-3 fill-rose-400 text-rose-400" />))}
+                      {[1, 2, 3, 4, 5].map((star) => (<Star key={star} className="h-3 w-3 fill-amber-500 text-amber-500" />))}
                       <span className="ml-1 text-cyan-500 text-xs">✓</span>
                     </div>
                     <p className="text-gray-600 text-xs leading-relaxed line-clamp-3">My husband surprised me here for our anniversary. The rooftop setup was magical! Highly recommend! ❤️</p>
@@ -890,7 +892,7 @@ export default function FFCHomePage() {
                       </svg>
                     </div>
                     <div className="flex gap-0.5 mb-2">
-                      {[1, 2, 3, 4, 5].map((star) => (<Star key={star} className="h-3 w-3 fill-rose-400 text-rose-400" />))}
+                      {[1, 2, 3, 4, 5].map((star) => (<Star key={star} className="h-3 w-3 fill-amber-500 text-amber-500" />))}
                       <span className="ml-1 text-cyan-500 text-xs">✓</span>
                     </div>
                     <p className="text-gray-600 text-xs leading-relaxed line-clamp-3">Best place for couples in Vadodara! Booked for my wife's birthday. Glass house setup was Instagram-perfect!</p>
@@ -914,10 +916,10 @@ export default function FFCHomePage() {
       <BlogSection />
 
       {/* FAQ Section */}
-      <section className="py-20 bg-rose-50">
+      <section className="py-20 bg-amber-50">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               FAQ
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 font-serif">
@@ -927,7 +929,7 @@ export default function FFCHomePage() {
           
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`faq-${index}`} className="bg-white rounded-lg border border-rose-100 px-6">
+              <AccordionItem key={index} value={`faq-${index}`} className="bg-white rounded-lg border border-amber-100 px-6">
                 <AccordionTrigger className="text-left font-medium hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
@@ -941,7 +943,7 @@ export default function FFCHomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-rose-600 to-pink-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-rose-800 to-amber-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-serif">
             Ready to Create Unforgettable Memories?

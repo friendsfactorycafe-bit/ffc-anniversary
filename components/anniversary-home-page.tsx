@@ -15,6 +15,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { FFCHeader, FFCFooter } from '@/components/ffc-layout';
 import { FFCBookingForm, FFCBookingFormInner, FFCWhatsAppFloat } from '@/components/ffc-booking-form';
 import { siteConfig, packages, anniversaryKeywords, vadodaraAreas, formatPrice, testimonials, faqs } from '@/lib/anniversary-config';
+import { generateBreadcrumbSchema, generateLocalBusinessSchema } from '@/lib/schema-generator';
 
 // Experience features for Anniversary
 const experienceFeatures = [
@@ -131,11 +132,12 @@ export default function AnniversaryHomePage() {
     <div className="min-h-screen bg-background">
       <FFCHeader />
       
+      <main>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <section aria-label="Anniversary Celebration Vadodara - Hero" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         {/* Background Slider */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-900/90 via-pink-900/85 to-rose-950/90 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-br from-rose-950/90 via-amber-900/85 to-rose-950/90 z-10" />
           {heroSliderImages.map((image, index) => (
             <Image
               key={index}
@@ -167,27 +169,27 @@ export default function AnniversaryHomePage() {
         </div>
         
         {/* Decorative elements */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-rose-400/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-pink-400/20 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 w-32 h-32 bg-amber-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-48 h-48 bg-amber-400/20 rounded-full blur-3xl" />
         
         {/* Hero Content */}
         <div className="relative z-20 container mx-auto px-4 py-12 md:py-20">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left - Text Content */}
             <div className="text-center lg:text-left">
-              <Badge className="mb-6 bg-rose-500/20 text-rose-100 border-rose-400/30 backdrop-blur-sm text-sm px-4 py-2">
+              <Badge className="mb-6 bg-amber-500/20 text-amber-100 border-amber-500/30 backdrop-blur-sm text-sm px-4 py-2">
                 <Heart className="w-4 h-4 mr-2" />
                 Vadodara&apos;s Premier Anniversary Celebration Venue
               </Badge>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Anniversary Celebration
-                <span className="block bg-gradient-to-r from-rose-300 via-pink-300 to-rose-200 bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-amber-300 via-amber-300 to-amber-200 bg-clip-text text-transparent">
                   Vadodara
                 </span>
               </h1>
               
-              <p className="text-base md:text-lg text-rose-100/90 max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+              <p className="text-base md:text-lg text-amber-100/90 max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
                 Create unforgettable memories at Vadodara&apos;s most romantic anniversary venue. 
                 Whether you&apos;re celebrating your <strong>1st anniversary</strong>, <strong>10th anniversary</strong>, 
                 <strong> 25th silver jubilee</strong>, or <strong>50th golden anniversary</strong> — we specialize in 
@@ -196,7 +198,7 @@ export default function AnniversaryHomePage() {
               </p>
               
               {/* Trust indicators */}
-              <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-rose-100/80">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-amber-100/80">
                 <div className="flex items-center gap-2">
                   <div className="flex -space-x-1">
                     {[...Array(5)].map((_, i) => (
@@ -225,10 +227,10 @@ export default function AnniversaryHomePage() {
       </section>
 
       {/* Packages Section with Thumbnails */}
-      <section className="py-12 md:py-16 bg-white">
+      <section aria-label="Anniversary Celebration Packages" className="py-12 md:py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <Gift className="w-3 h-3 mr-1" />
               Our Packages
             </Badge>
@@ -243,16 +245,16 @@ export default function AnniversaryHomePage() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {packages.map((pkg, index) => (
               <Link key={pkg.id} href={`/packages/${pkg.slug}`}>
-                <Card className="overflow-hidden border-rose-100 hover:shadow-xl transition-all group h-full hover:border-rose-300">
+                <Card className="overflow-hidden border-amber-100 hover:shadow-xl transition-all group h-full hover:border-amber-300">
                   {/* Image */}
-                  <div className="aspect-square bg-gradient-to-br from-rose-100 to-pink-100 relative overflow-hidden">
+                  <div className="aspect-square bg-gradient-to-br from-amber-100 to-amber-100 relative overflow-hidden">
                     <Image
                       src={pkg.thumbnail}
                       alt={`${pkg.name} - Anniversary Package Vadodara`}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <Badge className="absolute top-2 left-2 md:top-3 md:left-3 bg-rose-600 text-white text-xs">
+                    <Badge className="absolute top-2 left-2 md:top-3 md:left-3 bg-rose-800 text-white text-xs">
                       Setup {index + 1}
                     </Badge>
                     {pkg.cakeIncluded && (
@@ -264,7 +266,7 @@ export default function AnniversaryHomePage() {
                   
                   {/* Content */}
                   <CardContent className="p-3 md:p-4">
-                    <h3 className="text-sm md:text-base lg:text-lg font-bold mb-1 group-hover:text-rose-600 transition-colors line-clamp-2">
+                    <h3 className="text-sm md:text-base lg:text-lg font-bold mb-1 group-hover:text-rose-800 transition-colors line-clamp-2">
                       {pkg.name} {pkg.emoji}
                     </h3>
                     <p className="text-gray-600 text-xs md:text-sm mb-2 line-clamp-2 hidden md:block">
@@ -272,7 +274,7 @@ export default function AnniversaryHomePage() {
                     </p>
                     
                     {/* Price */}
-                    <p className="text-lg md:text-xl font-bold text-rose-600">
+                    <p className="text-lg md:text-xl font-bold text-rose-800">
                       {formatPrice(pkg.price)}
                     </p>
                   </CardContent>
@@ -282,7 +284,7 @@ export default function AnniversaryHomePage() {
           </div>
           
           <div className="text-center mt-8">
-            <Button asChild size="lg" className="bg-rose-600 hover:bg-rose-700 text-white rounded-full px-8">
+            <Button asChild size="lg" className="bg-rose-800 hover:bg-rose-900 text-white rounded-full px-8">
               <Link href="/packages">
                 View All Packages
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -293,11 +295,11 @@ export default function AnniversaryHomePage() {
       </section>
 
       {/* Introduction Section - SEO Rich Content */}
-      <section className="py-16 bg-gray-50">
+      <section aria-label="About Us" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
-              <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+              <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
                 <Heart className="w-3 h-3 mr-1" />
                 About Us
               </Badge>
@@ -311,28 +313,28 @@ export default function AnniversaryHomePage() {
                 Welcome to <strong>Anniversary Celebration Vadodara</strong> — the city&apos;s most trusted destination 
                 for romantic anniversary celebrations. Located in the heart of Vadodara, we have been helping 
                 couples create magical memories on their special day for years. Whether you&apos;re planning an 
-                <Link href="/anniversary-surprise-for-husband-vadodara" className="text-rose-600 hover:underline"> anniversary surprise for your husband</Link> or an 
-                <Link href="/anniversary-surprise-for-wife-vadodara" className="text-rose-600 hover:underline"> anniversary surprise for your wife</Link>, 
+                <Link href="/anniversary-surprise-for-husband-vadodara" className="text-rose-800 hover:underline"> anniversary surprise for your husband</Link> or an 
+                <Link href="/anniversary-surprise-for-wife-vadodara" className="text-rose-800 hover:underline"> anniversary surprise for your wife</Link>, 
                 our expert team ensures every detail is perfect.
               </p>
               
               <p className="text-lg leading-relaxed mb-6">
-                Our venue offers exclusive <Link href="/private-anniversary-celebration-vadodara" className="text-rose-600 hover:underline">private anniversary celebrations</Link> with 
+                Our venue offers exclusive <Link href="/private-anniversary-celebration-vadodara" className="text-rose-800 hover:underline">private anniversary celebrations</Link> with 
                 stunning rooftop views, elegant glass house settings, and romantic decorations. From 
-                <Link href="/candlelight-anniversary-dinner-vadodara" className="text-rose-600 hover:underline"> candlelight anniversary dinners</Link> to 
-                <Link href="/luxury-anniversary-celebration-vadodara" className="text-rose-600 hover:underline"> luxury anniversary celebrations</Link>, 
-                we cater to all preferences and budgets with <Link href="/affordable-anniversary-celebration-vadodara" className="text-rose-600 hover:underline">affordable packages</Link> starting 
+                <Link href="/candlelight-anniversary-dinner-vadodara" className="text-rose-800 hover:underline"> candlelight anniversary dinners</Link> to 
+                <Link href="/luxury-anniversary-celebration-vadodara" className="text-rose-800 hover:underline"> luxury anniversary celebrations</Link>, 
+                we cater to all preferences and budgets with <Link href="/affordable-anniversary-celebration-vadodara" className="text-rose-800 hover:underline">affordable packages</Link> starting 
                 from just ₹4,700.
               </p>
               
               <p className="text-lg leading-relaxed">
-                As professional <Link href="/anniversary-planners-vadodara" className="text-rose-600 hover:underline">anniversary planners in Vadodara</Link> and 
-                <Link href="/anniversary-party-organizers-vadodara" className="text-rose-600 hover:underline"> party organizers</Link>, 
-                we handle everything — from <Link href="/anniversary-decoration-vadodara" className="text-rose-600 hover:underline">beautiful decorations</Link> and 
-                <Link href="/romantic-anniversary-setup-vadodara" className="text-rose-600 hover:underline"> romantic setups</Link> to 
-                <Link href="/anniversary-dinner-vadodara" className="text-rose-600 hover:underline"> intimate dinners</Link>. 
-                Explore our <Link href="/anniversary-venues-vadodara" className="text-rose-600 hover:underline">anniversary venues</Link> and 
-                discover why we&apos;re rated among the <Link href="/best-anniversary-places-vadodara" className="text-rose-600 hover:underline">best anniversary places in Vadodara</Link>.
+                As professional <Link href="/anniversary-planners-vadodara" className="text-rose-800 hover:underline">anniversary planners in Vadodara</Link> and 
+                <Link href="/anniversary-party-organizers-vadodara" className="text-rose-800 hover:underline"> party organizers</Link>, 
+                we handle everything — from <Link href="/anniversary-decoration-vadodara" className="text-rose-800 hover:underline">beautiful decorations</Link> and 
+                <Link href="/romantic-anniversary-setup-vadodara" className="text-rose-800 hover:underline"> romantic setups</Link> to 
+                <Link href="/anniversary-dinner-vadodara" className="text-rose-800 hover:underline"> intimate dinners</Link>. 
+                Explore our <Link href="/anniversary-venues-vadodara" className="text-rose-800 hover:underline">anniversary venues</Link> and 
+                discover why we&apos;re rated among the <Link href="/best-anniversary-places-vadodara" className="text-rose-800 hover:underline">best anniversary places in Vadodara</Link>.
               </p>
             </div>
           </div>
@@ -340,10 +342,10 @@ export default function AnniversaryHomePage() {
       </section>
 
       {/* Anniversary Milestones Section */}
-      <section className="py-16 bg-gradient-to-b from-rose-50 to-white">
+      <section aria-label="Anniversary Milestones" className="py-16 bg-gradient-to-b from-amber-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <Cake className="w-3 h-3 mr-1" />
               Celebrate Every Milestone
             </Badge>
@@ -361,11 +363,11 @@ export default function AnniversaryHomePage() {
               <Link 
                 key={index}
                 href={milestone.link}
-                className="block p-6 rounded-xl bg-white border border-rose-100 hover:border-rose-300 hover:shadow-lg hover:shadow-rose-100/50 transition-all text-center group"
+                className="block p-6 rounded-xl bg-white border border-amber-100 hover:border-amber-300 hover:shadow-lg hover:shadow-amber-100/50 transition-all text-center group"
               >
                 <div className="text-4xl mb-3">{milestone.emoji}</div>
-                <h3 className="text-2xl font-bold text-rose-600 mb-1">{milestone.year}</h3>
-                <p className="text-sm text-muted-foreground group-hover:text-rose-600 transition-colors">{milestone.name}</p>
+                <h3 className="text-2xl font-bold text-rose-800 mb-1">{milestone.year}</h3>
+                <p className="text-sm text-muted-foreground group-hover:text-rose-800 transition-colors">{milestone.name}</p>
               </Link>
             ))}
           </div>
@@ -373,10 +375,10 @@ export default function AnniversaryHomePage() {
       </section>
 
       {/* Experience Features */}
-      <section className="py-16 bg-white">
+      <section aria-label="What's Included" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <Sparkles className="w-3 h-3 mr-1" />
               What&apos;s Included
             </Badge>
@@ -390,9 +392,9 @@ export default function AnniversaryHomePage() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {experienceFeatures.map((feature, index) => (
-              <Card key={index} className="text-center border-rose-100 hover:shadow-lg hover:shadow-rose-100/50 transition-all duration-300">
+              <Card key={index} className="text-center border-amber-100 hover:shadow-lg hover:shadow-amber-100/50 transition-all duration-300">
                 <CardContent className="pt-8 pb-6">
-                  <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-rose-500 to-pink-600 flex items-center justify-center">
+                  <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center">
                     <feature.icon className="w-7 h-7 text-white" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
@@ -405,10 +407,10 @@ export default function AnniversaryHomePage() {
       </section>
 
       {/* Service Highlights */}
-      <section className="py-16 bg-gradient-to-b from-rose-50 to-white">
+      <section className="py-16 bg-gradient-to-b from-amber-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <PartyPopper className="w-3 h-3 mr-1" />
               Popular Services
             </Badge>
@@ -423,12 +425,12 @@ export default function AnniversaryHomePage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {serviceHighlights.map((service, index) => (
               <Link key={index} href={service.link}>
-                <Card className="h-full border-rose-100 hover:border-rose-300 hover:shadow-lg transition-all group cursor-pointer">
+                <Card className="h-full border-amber-100 hover:border-amber-300 hover:shadow-lg transition-all group cursor-pointer">
                   <CardContent className="pt-6">
-                    <div className="w-12 h-12 mb-4 rounded-lg bg-rose-100 flex items-center justify-center group-hover:bg-rose-500 transition-colors">
-                      <service.icon className="w-6 h-6 text-rose-600 group-hover:text-white transition-colors" />
+                    <div className="w-12 h-12 mb-4 rounded-lg bg-amber-100 flex items-center justify-center group-hover:bg-amber-500 transition-colors">
+                      <service.icon className="w-6 h-6 text-rose-800 group-hover:text-white transition-colors" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2 group-hover:text-rose-600 transition-colors">{service.title}</h3>
+                    <h3 className="font-semibold text-lg mb-2 group-hover:text-rose-800 transition-colors">{service.title}</h3>
                     <p className="text-muted-foreground text-sm">{service.description}</p>
                   </CardContent>
                 </Card>
@@ -439,10 +441,10 @@ export default function AnniversaryHomePage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-gradient-to-b from-rose-50 to-white">
+      <section className="py-20 bg-gradient-to-b from-amber-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-14">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <Award className="w-3 h-3 mr-1" />
               Why Choose Us
             </Badge>
@@ -456,10 +458,10 @@ export default function AnniversaryHomePage() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {whyChooseUs.map((item, index) => (
-              <Card key={index} className="text-center border-rose-100 hover:shadow-lg transition-all">
+              <Card key={index} className="text-center border-amber-100 hover:shadow-lg transition-all">
                 <CardContent className="pt-8 pb-6">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-rose-100 flex items-center justify-center">
-                    <item.icon className="w-8 h-8 text-rose-600" />
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-amber-100 flex items-center justify-center">
+                    <item.icon className="w-8 h-8 text-rose-800" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
                   <p className="text-muted-foreground text-sm">{item.description}</p>
@@ -474,7 +476,7 @@ export default function AnniversaryHomePage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-14">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <Camera className="w-3 h-3 mr-1" />
               Our Gallery
             </Badge>
@@ -483,8 +485,8 @@ export default function AnniversaryHomePage() {
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               A glimpse into the magical moments we&apos;ve helped couples create — from 
-              <Link href="/romantic-anniversary-date-vadodara" className="text-rose-600 hover:underline"> romantic date nights</Link> to 
-              <Link href="/wedding-anniversary-party-vadodara" className="text-rose-600 hover:underline"> wedding anniversary parties</Link>
+              <Link href="/romantic-anniversary-date-vadodara" className="text-rose-800 hover:underline"> romantic date nights</Link> to 
+              <Link href="/wedding-anniversary-party-vadodara" className="text-rose-800 hover:underline"> wedding anniversary parties</Link>
             </p>
           </div>
           
@@ -501,7 +503,7 @@ export default function AnniversaryHomePage() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-rose-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-gradient-to-t from-rose-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-4 left-4 text-white">
                     <p className="font-semibold">{item.title}</p>
                   </div>
@@ -525,8 +527,8 @@ export default function AnniversaryHomePage() {
                     <source src={video.src} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
-                  <div className="p-3 bg-rose-50">
-                    <p className="font-medium text-rose-800 text-sm">{video.title}</p>
+                  <div className="p-3 bg-amber-50">
+                    <p className="font-medium text-rose-900 text-sm">{video.title}</p>
                   </div>
                 </div>
               ))}
@@ -536,10 +538,10 @@ export default function AnniversaryHomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-b from-rose-50 to-white">
+      <section className="py-20 bg-gradient-to-b from-amber-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-14">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <Heart className="w-3 h-3 mr-1" />
               Happy Couples
             </Badge>
@@ -553,7 +555,7 @@ export default function AnniversaryHomePage() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="border-rose-100">
+              <Card key={index} className="border-amber-100">
                 <CardContent className="pt-6">
                   <div className="flex mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -561,9 +563,9 @@ export default function AnniversaryHomePage() {
                     ))}
                   </div>
                   <p className="text-muted-foreground text-sm mb-4 italic">&quot;{testimonial.text}&quot;</p>
-                  <div className="border-t border-rose-100 pt-4">
+                  <div className="border-t border-amber-100 pt-4">
                     <p className="font-semibold text-sm">{testimonial.name}</p>
-                    <p className="text-xs text-rose-600">{testimonial.anniversary}</p>
+                    <p className="text-xs text-rose-800">{testimonial.anniversary}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -576,7 +578,7 @@ export default function AnniversaryHomePage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-14">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <Sparkles className="w-3 h-3 mr-1" />
               Our Services
             </Badge>
@@ -584,10 +586,10 @@ export default function AnniversaryHomePage() {
               Complete Anniversary Celebration Services in Vadodara
             </h2>
             <p className="text-muted-foreground max-w-3xl mx-auto">
-              From <Link href="/anniversary-date-night-vadodara" className="text-rose-600 hover:underline">anniversary date nights</Link> to 
-              <Link href="/anniversary-restaurants-vadodara" className="text-rose-600 hover:underline"> romantic restaurant experiences</Link>, 
+              From <Link href="/anniversary-date-night-vadodara" className="text-rose-800 hover:underline">anniversary date nights</Link> to 
+              <Link href="/anniversary-restaurants-vadodara" className="text-rose-800 hover:underline"> romantic restaurant experiences</Link>, 
               explore our full range of anniversary celebration services. We offer 
-              <Link href="/anniversary-celebration-ideas-vadodara" className="text-rose-600 hover:underline"> creative celebration ideas</Link> for 
+              <Link href="/anniversary-celebration-ideas-vadodara" className="text-rose-800 hover:underline"> creative celebration ideas</Link> for 
               couples seeking the perfect way to honor their love story.
             </p>
           </div>
@@ -597,9 +599,9 @@ export default function AnniversaryHomePage() {
               <Link 
                 key={index}
                 href={`/${keyword.slug}`}
-                className="block p-4 rounded-lg border border-rose-100 hover:border-rose-300 hover:bg-rose-50 transition-all group"
+                className="block p-4 rounded-lg border border-amber-100 hover:border-amber-300 hover:bg-amber-50 transition-all group"
               >
-                <h3 className="font-medium text-sm group-hover:text-rose-600 transition-colors flex items-center">
+                <h3 className="font-medium text-sm group-hover:text-rose-800 transition-colors flex items-center">
                   {keyword.title}
                   <ChevronRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
                 </h3>
@@ -610,10 +612,10 @@ export default function AnniversaryHomePage() {
       </section>
 
       {/* Areas Section - All Vadodara Areas */}
-      <section className="py-20 bg-gradient-to-b from-rose-50 to-white">
+      <section className="py-20 bg-gradient-to-b from-amber-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-14">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <MapPin className="w-3 h-3 mr-1" />
               Areas We Serve
             </Badge>
@@ -631,9 +633,9 @@ export default function AnniversaryHomePage() {
               <Link 
                 key={index}
                 href={`/${area.slug}`}
-                className="block px-4 py-3 rounded-lg border border-rose-200 text-center hover:bg-rose-100 hover:border-rose-300 transition-all group"
+                className="block px-4 py-3 rounded-lg border border-amber-200 text-center hover:bg-amber-100 hover:border-amber-300 transition-all group"
               >
-                <span className="text-sm font-medium group-hover:text-rose-600 transition-colors">
+                <span className="text-sm font-medium group-hover:text-rose-800 transition-colors">
                   {area.name}
                 </span>
               </Link>
@@ -647,7 +649,7 @@ export default function AnniversaryHomePage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+              <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
                 <MapPin className="w-3 h-3 mr-1" />
                 Our Location
               </Badge>
@@ -661,21 +663,21 @@ export default function AnniversaryHomePage() {
               
               <div className="space-y-4 mb-8">
                 <div className="flex items-start gap-4">
-                  <MapPin className="w-5 h-5 text-rose-600 mt-1 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-rose-800 mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-semibold">Address</p>
                     <p className="text-muted-foreground text-sm">{siteConfig.address}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <Phone className="w-5 h-5 text-rose-600 mt-1 flex-shrink-0" />
+                  <Phone className="w-5 h-5 text-rose-800 mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-semibold">Phone</p>
                     <p className="text-muted-foreground text-sm">{siteConfig.phone}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <Clock className="w-5 h-5 text-rose-600 mt-1 flex-shrink-0" />
+                  <Clock className="w-5 h-5 text-rose-800 mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-semibold">Celebration Hours</p>
                     <p className="text-muted-foreground text-sm">5:00 PM - 11:00 PM (By Appointment)</p>
@@ -685,7 +687,7 @@ export default function AnniversaryHomePage() {
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
-                  className="bg-rose-500 hover:bg-rose-600 text-white"
+                  className="bg-amber-500 hover:bg-rose-800 text-white"
                   onClick={() => setIsBookingOpen(true)}
                 >
                   <Calendar className="mr-2 h-4 w-4" />
@@ -693,7 +695,7 @@ export default function AnniversaryHomePage() {
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="border-rose-300 text-rose-600 hover:bg-rose-50"
+                  className="border-amber-300 text-rose-800 hover:bg-amber-50"
                   asChild
                 >
                   <Link href={`https://wa.me/${siteConfig.whatsapp}`}>
@@ -721,10 +723,10 @@ export default function AnniversaryHomePage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gradient-to-b from-rose-50 to-white">
+      <section aria-label="Frequently Asked Questions" className="py-20 bg-gradient-to-b from-amber-50 to-white">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="text-center mb-14">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               FAQ
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -734,8 +736,8 @@ export default function AnniversaryHomePage() {
           
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border-rose-100">
-                <AccordionTrigger className="text-left hover:text-rose-600">
+              <AccordionItem key={index} value={`item-${index}`} className="border-amber-100">
+                <AccordionTrigger className="text-left hover:text-rose-800">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
@@ -745,14 +747,14 @@ export default function AnniversaryHomePage() {
             ))}
           </Accordion>
           
-          <div className="mt-10 p-6 bg-rose-50 rounded-xl">
+          <div className="mt-10 p-6 bg-amber-50 rounded-xl">
             <h3 className="font-semibold mb-3">Still Have Questions?</h3>
             <p className="text-muted-foreground text-sm mb-4">
               Contact our anniversary planning team for personalized assistance with your celebration.
             </p>
             <Button 
               variant="outline" 
-              className="border-rose-300 text-rose-600 hover:bg-white"
+              className="border-amber-300 text-rose-800 hover:bg-white"
               asChild
             >
               <Link href={`tel:${siteConfig.phone}`}>
@@ -765,12 +767,12 @@ export default function AnniversaryHomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-rose-600 via-pink-600 to-rose-700 text-white">
+      <section className="py-20 bg-gradient-to-br from-rose-800 via-amber-600 to-rose-900 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Celebrate Your Anniversary in Vadodara?
           </h2>
-          <p className="text-rose-100 max-w-3xl mx-auto mb-10 text-lg">
+          <p className="text-amber-100 max-w-3xl mx-auto mb-10 text-lg">
             Whether it&apos;s your 1st anniversary, 10th anniversary, 25th silver jubilee, or 50th golden anniversary — 
             let us help you create a magical celebration that honors your love story. 
             Book now and make your anniversary truly unforgettable.
@@ -779,7 +781,7 @@ export default function AnniversaryHomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-white text-rose-600 hover:bg-rose-50 px-8 py-6 text-lg rounded-full"
+              className="bg-white text-rose-800 hover:bg-amber-50 px-8 py-6 text-lg rounded-full"
               onClick={() => setIsBookingOpen(true)}
             >
               <Calendar className="mr-2 h-5 w-5" />
@@ -799,6 +801,53 @@ export default function AnniversaryHomePage() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Schema JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqs.map(faq => ({
+              "@type": "Question",
+              "name": faq.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer,
+              },
+            })),
+          })
+        }}
+      />
+
+      {/* Breadcrumb Schema JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema([
+            { name: 'Home', url: siteConfig.website }
+          ]))
+        }}
+      />
+
+      {/* LocalBusiness Schema JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateLocalBusinessSchema({
+            name: siteConfig.name,
+            url: siteConfig.website,
+            phone: siteConfig.phone,
+            address: siteConfig.address,
+            city: siteConfig.city,
+            description: siteConfig.description,
+            priceRange: '₹4700 - ₹14900',
+            image: `${siteConfig.website}/og-image.jpg`,
+          }))
+        }}
+      />
+      </main>
 
       {/* Footer */}
       <FFCFooter />

@@ -25,7 +25,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://anniversarycelebrationvadodara.com"),
+  metadataBase: new URL("https://anniversarydinnervadodara.com"),
   title: {
     default: "Anniversary Celebration Vadodara | Best Anniversary Venues & Romantic Dinner Packages",
     template: "%s | Anniversary Celebration Vadodara",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     "surprise anniversary party vadodara",
     "anniversary celebration ideas vadodara"
   ],
-  authors: [{ name: "Anniversary Celebration Vadodara", url: "https://anniversarycelebrationvadodara.com" }],
+  authors: [{ name: "Anniversary Celebration Vadodara", url: "https://anniversarydinnervadodara.com" }],
   creator: "Anniversary Celebration Vadodara",
   publisher: "Anniversary Celebration Vadodara",
   formatDetection: {
@@ -60,15 +60,12 @@ export const metadata: Metadata = {
     address: true,
     telephone: true,
   },
-  alternates: {
-    canonical: "https://anniversarycelebrationvadodara.com",
-  },
   category: "Event Venue",
   classification: "Anniversary Celebration Venue",
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://anniversarycelebrationvadodara.com",
+    url: "https://anniversarydinnervadodara.com",
     siteName: "Anniversary Celebration Vadodara",
     title: "Anniversary Celebration Vadodara | Best Anniversary Venues & Packages",
     description: "Vadodara's premier anniversary celebration destination. Private venues, romantic decorations, candlelight dinners. Starting ₹4,700.",
@@ -102,6 +99,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: ['c1b155cb6acd07f9', '449567c9b7854ff6'],
+  },
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -127,20 +127,20 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "LocalBusiness",
-      "@id": "https://anniversarycelebrationvadodara.com/#business",
+      "@id": "https://anniversarydinnervadodara.com/#business",
       "name": "Anniversary Celebration Vadodara",
       "alternateName": "Anniversary Celebration Vadodara",
       "description": "Vadodara's premier anniversary celebration destination. Elegant private venues, romantic decorations, candlelight dinners, and personalized celebration packages for couples.",
-      "url": "https://anniversarycelebrationvadodara.com",
+      "url": "https://anniversarydinnervadodara.com",
       "telephone": "+91-7487888730",
-      "email": "hello@anniversarycelebrationvadodara.com",
+      "email": "hello@anniversarydinnervadodara.com",
       "priceRange": "₹₹₹",
       "currenciesAccepted": "INR",
       "paymentAccepted": "Cash, Credit Card, UPI, GPay, PhonePe",
       "image": [
-        "https://anniversarycelebrationvadodara.com/images/gallery/anniversary-celebration-vadodara-1.jpg",
-        "https://anniversarycelebrationvadodara.com/images/gallery/anniversary-dinner-setup-vadodara-1.jpg",
-        "https://anniversarycelebrationvadodara.com/images/gallery/romantic-table-decoration-vadodara-1.jpg"
+        "https://anniversarydinnervadodara.com/images/gallery/anniversary-celebration-vadodara-1.jpg",
+        "https://anniversarydinnervadodara.com/images/gallery/anniversary-dinner-setup-vadodara-1.jpg",
+        "https://anniversarydinnervadodara.com/images/gallery/romantic-table-decoration-vadodara-1.jpg"
       ],
       "address": {
         "@type": "PostalAddress",
@@ -213,22 +213,22 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://anniversarycelebrationvadodara.com/#website",
-      "url": "https://anniversarycelebrationvadodara.com",
+      "@id": "https://anniversarydinnervadodara.com/#website",
+      "url": "https://anniversarydinnervadodara.com",
       "name": "Anniversary Celebration Vadodara",
       "description": "Vadodara's premier anniversary celebration destination",
       "publisher": {
-        "@id": "https://anniversarycelebrationvadodara.com/#business"
+        "@id": "https://anniversarydinnervadodara.com/#business"
       }
     },
     {
       "@type": "Organization",
-      "@id": "https://anniversarycelebrationvadodara.com/#organization",
+      "@id": "https://anniversarydinnervadodara.com/#organization",
       "name": "Anniversary Celebration Vadodara",
-      "url": "https://anniversarycelebrationvadodara.com",
+      "url": "https://anniversarydinnervadodara.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://anniversarycelebrationvadodara.com/images/logo.png",
+        "url": "https://anniversarydinnervadodara.com/images/logo.png",
         "width": "512",
         "height": "512"
       },
@@ -239,6 +239,30 @@ const jsonLd = {
         "areaServed": "Vadodara",
         "availableLanguage": ["English", "Hindi", "Gujarati"]
       }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://anniversarydinnervadodara.com/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://anniversarydinnervadodara.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Anniversary Packages",
+          "item": "https://anniversarydinnervadodara.com/packages"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "About Us",
+          "item": "https://anniversarydinnervadodara.com/about"
+        }
+      ]
     }
   ]
 };

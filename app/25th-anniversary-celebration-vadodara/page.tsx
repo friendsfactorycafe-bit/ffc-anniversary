@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     description: 'A quarter century of love deserves a celebration in silver. Premium venues and packages for your silver jubilee.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/25th-anniversary-celebration-vadodara',
+  },
 };
 
 const silverJubileeSignificance = {

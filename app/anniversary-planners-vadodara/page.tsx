@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'Expert anniversary planning services with end-to-end coordination. Let us create your perfect celebration.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/anniversary-planners-vadodara',
+  },
 };
 
 const planningPackages = [

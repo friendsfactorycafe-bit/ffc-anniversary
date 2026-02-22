@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     description: 'Half a century of love deserves a celebration in gold. Grand venues and packages for your golden jubilee.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/50th-anniversary-celebration-vadodara',
+  },
 };
 
 const goldenJubileeSignificance = {

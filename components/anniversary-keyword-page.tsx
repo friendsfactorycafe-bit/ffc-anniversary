@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { 
@@ -13,8 +13,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { FFCHeader, FFCFooter } from '@/components/ffc-layout';
-import { FFCBookingForm, FFCWhatsAppFloat } from '@/components/ffc-booking-form';
+import { FFCBookingForm, FFCBookingFormInner, FFCWhatsAppFloat } from '@/components/ffc-booking-form';
 import { ServiceKeyword, packages, vadodaraAreas, siteConfig, formatPrice, anniversaryKeywords, testimonials } from '@/lib/anniversary-config';
+import { generateExpandedContent, generateFAQContent } from '@/lib/seo-content-engine';
+import { generateBreadcrumbSchema, generateServiceSchema, buildKeywordBreadcrumbs } from '@/lib/schema-generator';
 
 interface AnniversaryKeywordPageProps {
   keyword: ServiceKeyword;
@@ -586,10 +588,47 @@ function getKeywordFAQs(keyword: ServiceKeyword) {
 
 export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPageProps) {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [heroSlide, setHeroSlide] = useState(0);
+  
+  // Hero slider auto-advance
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroSlide((prev) => (prev + 1) % 3);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
   
   const content = getKeywordContent(keyword);
   const faqs = getKeywordFAQs(keyword);
   
+  // SEO Content Expansion: 700+ unique words + 10 unique FAQs with schema
+  const seoContent = generateExpandedContent(keyword.title, 'Vadodara', 'Friends Factory Cafe');
+  const seoFAQs = generateFAQContent(keyword.title, 'Vadodara', 'Friends Factory Cafe');
+
+  // Merge: existing FAQs first, then fill to 10 from SEO engine
+  const allFAQs = [...faqs];
+  const existingQuestions = new Set(allFAQs.map(f => f.question.toLowerCase()));
+  for (const faq of seoFAQs.faqs) {
+    if (allFAQs.length >= 10) break;
+    if (!existingQuestions.has(faq.question.toLowerCase())) {
+      allFAQs.push(faq);
+      existingQuestions.add(faq.question.toLowerCase());
+    }
+  }
+
+  const faqSchemaMarkup = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": allFAQs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  };
+
   // Get related packages
   const relatedPackages = packages.slice(0, 3);
 
@@ -600,61 +639,110 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
     <div className="min-h-screen bg-white">
       <FFCHeader />
       
+      <main>
       {/* Breadcrumb */}
-      <div className="bg-rose-50 py-4">
+      <div className="bg-amber-50 py-4">
         <div className="container mx-auto px-4">
-          <nav className="flex items-center gap-2 text-sm flex-wrap">
-            <Link href="/" className="text-gray-500 hover:text-rose-600">Home</Link>
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm flex-wrap">
+            <Link href="/" className="text-gray-500 hover:text-rose-800">Home</Link>
             <ChevronRight className="h-4 w-4 text-gray-400" />
-            <span className="text-rose-600 font-medium">{keyword.title}</span>
+            <span className="text-rose-800 font-medium">{keyword.title}</span>
           </nav>
         </div>
       </div>
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-rose-600 via-pink-600 to-rose-700 text-white py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="text-6xl mb-6">{content.emoji}</div>
-            <Badge className="mb-4 bg-white/20 text-white border-white/30">
-              💕 Anniversary Celebration Vadodara
-            </Badge>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 font-serif">
-              {keyword.h1}
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-              {content.intro}
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button 
-                size="lg" 
-                className="bg-white text-rose-600 hover:bg-rose-50 text-lg px-8 py-6"
-                onClick={() => setIsBookingOpen(true)}
-              >
-                <Calendar className="mr-2 h-5 w-5" />
-                Book Your Celebration
-              </Button>
-              <Link href={`https://wa.me/${siteConfig.whatsapp}?text=Hi! I'm interested in ${keyword.title} at your venue.`}>
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white w-full sm:w-auto px-8 py-6">
-                  <MessageCircle className="h-5 w-5 mr-2" />
-                  WhatsApp Us
+      {/* Hero Section — Homepage-style slider with booking form */}
+      <section aria-label={`${keyword.title} - Hero`} className="relative bg-gradient-to-br from-rose-800 via-amber-600 to-rose-900 text-white overflow-hidden">
+        {/* Background Image Slider */}
+        <div className="absolute inset-0">
+          {galleryImages.slice(0, 3).map((image, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                index === heroSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <Image
+                src={image.src}
+                alt={`${keyword.title} - ${image.alt}`}
+                fill
+                className="object-cover"
+                priority={index === 0}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-rose-950/70 via-rose-950/50 to-transparent" />
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+          {galleryImages.slice(0, 3).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setHeroSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                index === heroSlide ? 'bg-white w-8' : 'bg-white/50'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <Badge className="mb-4 bg-white/20 text-white border-white/30">
+                💕 Anniversary Celebration Vadodara
+              </Badge>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 font-serif">
+                {keyword.h1}
+              </h1>
+              <p className="text-lg md:text-xl text-white/90 mb-8 max-w-xl leading-relaxed">
+                {content.intro}
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+                <Button 
+                  size="lg" 
+                  className="bg-white text-rose-800 hover:bg-amber-50 text-lg px-8 py-6"
+                  onClick={() => setIsBookingOpen(true)}
+                >
+                  <Calendar className="mr-2 h-5 w-5" />
+                  Book Your Celebration
                 </Button>
-              </Link>
+                <Link href={`https://wa.me/${siteConfig.whatsapp}?text=Hi! I'm interested in ${keyword.title} at your venue.`}>
+                  <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white w-full sm:w-auto px-8 py-6">
+                    <MessageCircle className="h-5 w-5 mr-2" />
+                    WhatsApp Us
+                  </Button>
+                </Link>
+              </div>
+              
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+                <span className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm">
+                  <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" /> 4.9★ Rated
+                </span>
+                <span className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm">
+                  <Shield className="h-4 w-4" /> 100% Private Venue
+                </span>
+                <span className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm">
+                  <Heart className="h-4 w-4" /> 500+ Happy Couples
+                </span>
+              </div>
             </div>
             
-            <div className="flex flex-wrap justify-center gap-4">
-              <span className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm">
-                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" /> 4.9★ Rated
-              </span>
-              <span className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm">
-                <Shield className="h-4 w-4" /> 100% Private Venue
-              </span>
-              <span className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm">
-                <Heart className="h-4 w-4" /> 500+ Happy Couples
-              </span>
+            {/* Hero Booking Form — Desktop */}
+            <div className="hidden lg:block">
+              <FFCBookingFormInner variant="hero" pageTitle={keyword.title} />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Mobile Booking Form — Above the fold on mobile */}
+      <section className="lg:hidden bg-gradient-to-r from-amber-50 via-amber-50 to-amber-50 py-8">
+        <div className="container mx-auto px-4">
+          <FFCBookingFormInner pageTitle={keyword.title} />
         </div>
       </section>
 
@@ -663,11 +751,11 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+              <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
                 <Heart className="w-3 h-3 mr-1" />
                 Why Choose Us
               </Badge>
-              <h2 className="text-2xl md:text-3xl font-bold text-rose-800 mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-rose-900 mb-6">
                 Why Our {keyword.title} Service is Special
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -676,37 +764,37 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
             </div>
             
             <div className="grid md:grid-cols-4 gap-6">
-              <Card className="text-center border-rose-100 hover:shadow-lg transition-all">
+              <Card className="text-center border-amber-100 hover:shadow-lg transition-all">
                 <CardContent className="pt-6">
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-rose-100 flex items-center justify-center">
-                    <Shield className="w-6 h-6 text-rose-600" />
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-amber-100 flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-rose-800" />
                   </div>
                   <h3 className="font-semibold mb-2">Private Venue</h3>
                   <p className="text-sm text-muted-foreground">Exclusively yours</p>
                 </CardContent>
               </Card>
-              <Card className="text-center border-rose-100 hover:shadow-lg transition-all">
+              <Card className="text-center border-amber-100 hover:shadow-lg transition-all">
                 <CardContent className="pt-6">
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-rose-100 flex items-center justify-center">
-                    <Sparkles className="w-6 h-6 text-rose-600" />
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-amber-100 flex items-center justify-center">
+                    <Sparkles className="w-6 h-6 text-rose-800" />
                   </div>
                   <h3 className="font-semibold mb-2">Premium Décor</h3>
                   <p className="text-sm text-muted-foreground">Elegant setups</p>
                 </CardContent>
               </Card>
-              <Card className="text-center border-rose-100 hover:shadow-lg transition-all">
+              <Card className="text-center border-amber-100 hover:shadow-lg transition-all">
                 <CardContent className="pt-6">
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-rose-100 flex items-center justify-center">
-                    <Clock className="w-6 h-6 text-rose-600" />
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-amber-100 flex items-center justify-center">
+                    <Clock className="w-6 h-6 text-rose-800" />
                   </div>
                   <h3 className="font-semibold mb-2">3 Hours</h3>
                   <p className="text-sm text-muted-foreground">Quality time</p>
                 </CardContent>
               </Card>
-              <Card className="text-center border-rose-100 hover:shadow-lg transition-all">
+              <Card className="text-center border-amber-100 hover:shadow-lg transition-all">
                 <CardContent className="pt-6">
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-rose-100 flex items-center justify-center">
-                    <Award className="w-6 h-6 text-rose-600" />
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-amber-100 flex items-center justify-center">
+                    <Award className="w-6 h-6 text-rose-800" />
                   </div>
                   <h3 className="font-semibold mb-2">Top Rated</h3>
                   <p className="text-sm text-muted-foreground">4.9★ reviews</p>
@@ -719,24 +807,24 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
 
       {/* Celebration Tips / Ideas Section */}
       {(content.celebrationTips || content.ideas || content.celebrationIdeas) && (
-        <section className="py-16 bg-rose-50">
+        <section className="py-16 bg-amber-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
-                <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+                <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
                   <Sparkles className="w-3 h-3 mr-1" />
                   Tips & Ideas
                 </Badge>
-                <h2 className="text-2xl md:text-3xl font-bold text-rose-800">
+                <h2 className="text-2xl md:text-3xl font-bold text-rose-900">
                   {keyword.title} Ideas & Tips
                 </h2>
               </div>
               
               <div className="grid md:grid-cols-2 gap-6">
                 {(content.celebrationTips || content.ideas || content.celebrationIdeas)?.map((tip: string, index: number) => (
-                  <Card key={index} className="border-rose-100">
+                  <Card key={index} className="border-amber-100">
                     <CardContent className="pt-6 flex items-start gap-4">
-                      <div className="w-8 h-8 rounded-full bg-rose-500 text-white flex items-center justify-center flex-shrink-0 text-sm font-bold">
+                      <div className="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center flex-shrink-0 text-sm font-bold">
                         {index + 1}
                       </div>
                       <p className="text-muted-foreground">{tip}</p>
@@ -755,19 +843,19 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
-                <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+                <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
                   <Gift className="w-3 h-3 mr-1" />
                   What&apos;s Included
                 </Badge>
-                <h2 className="text-2xl md:text-3xl font-bold text-rose-800">
+                <h2 className="text-2xl md:text-3xl font-bold text-rose-900">
                   {keyword.title} Features
                 </h2>
               </div>
               
               <div className="grid md:grid-cols-2 gap-4">
                 {(content.decorationElements || content.venueFeatures || content.setupElements || content.luxuryFeatures || content.privacyFeatures || content.outdoorFeatures)?.map((feature: string, index: number) => (
-                  <div key={index} className="flex items-center gap-3 p-4 bg-rose-50 rounded-lg">
-                    <Check className="w-5 h-5 text-rose-500 flex-shrink-0" />
+                  <div key={index} className="flex items-center gap-3 p-4 bg-amber-50 rounded-lg">
+                    <Check className="w-5 h-5 text-amber-500 flex-shrink-0" />
                     <span className="text-gray-700">{feature}</span>
                   </div>
                 ))}
@@ -778,14 +866,14 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
       )}
 
       {/* Gallery Section */}
-      <section className="py-16 bg-gradient-to-b from-rose-50 to-white">
+      <section aria-label="Anniversary Gallery" className="py-16 bg-gradient-to-b from-amber-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <Camera className="w-3 h-3 mr-1" />
               Gallery
             </Badge>
-            <h2 className="text-2xl md:text-3xl font-bold text-rose-800">
+            <h2 className="text-2xl md:text-3xl font-bold text-rose-900">
               Our {keyword.title} Setups in Vadodara
             </h2>
           </div>
@@ -798,7 +886,7 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-rose-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-rose-950/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             ))}
           </div>
@@ -806,14 +894,14 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
       </section>
 
       {/* Packages Section */}
-      <section className="py-16 bg-white">
+      <section aria-label="Anniversary Celebration Packages" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <Gift className="w-3 h-3 mr-1" />
               Packages
             </Badge>
-            <h2 className="text-2xl md:text-3xl font-bold text-rose-800">
+            <h2 className="text-2xl md:text-3xl font-bold text-rose-900">
               {keyword.title} Packages
             </h2>
             <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
@@ -823,10 +911,10 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
           
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {relatedPackages.map((pkg, index) => (
-              <Card key={pkg.id} className={`relative overflow-hidden hover:shadow-xl transition-all border-rose-100 ${index === 0 ? 'ring-2 ring-rose-500' : ''}`}>
+              <Card key={pkg.id} className={`relative overflow-hidden hover:shadow-xl transition-all border-amber-100 ${index === 0 ? 'ring-2 ring-amber-500' : ''}`}>
                 {index === 0 && (
                   <div className="absolute top-4 right-4 z-10">
-                    <Badge className="bg-rose-500 text-white">Most Popular</Badge>
+                    <Badge className="bg-amber-500 text-white">Most Popular</Badge>
                   </div>
                 )}
                 <CardHeader className="pb-4">
@@ -836,13 +924,13 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
                 </CardHeader>
                 <CardContent>
                   <div className="mb-4">
-                    <span className="text-3xl font-bold text-rose-600">{formatPrice(pkg.price)}</span>
+                    <span className="text-3xl font-bold text-rose-800">{formatPrice(pkg.price)}</span>
                   </div>
                   
                   <ul className="space-y-2 mb-6">
                     {pkg.features.slice(0, 5).map((feature, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm">
-                        <Check className="w-4 h-4 text-rose-500 mt-0.5 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -855,7 +943,7 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
                   )}
                   
                   <Button 
-                    className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white"
+                    className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-rose-800 hover:to-amber-700 text-white"
                     onClick={() => setIsBookingOpen(true)}
                   >
                     Book This Package
@@ -869,21 +957,21 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
       </section>
 
       {/* Testimonials */}
-      <section className="py-16 bg-rose-50">
+      <section className="py-16 bg-amber-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <Heart className="w-3 h-3 mr-1" />
               Reviews
             </Badge>
-            <h2 className="text-2xl md:text-3xl font-bold text-rose-800">
+            <h2 className="text-2xl md:text-3xl font-bold text-rose-900">
               What Couples Say About Our {keyword.title}
             </h2>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="border-rose-100">
+              <Card key={index} className="border-amber-100">
                 <CardContent className="pt-6">
                   <div className="flex mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -891,9 +979,9 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
                     ))}
                   </div>
                   <p className="text-muted-foreground text-sm mb-4 italic">&quot;{testimonial.text}&quot;</p>
-                  <div className="border-t border-rose-100 pt-4">
+                  <div className="border-t border-amber-100 pt-4">
                     <p className="font-semibold text-sm">{testimonial.name}</p>
-                    <p className="text-xs text-rose-600">{testimonial.anniversary}</p>
+                    <p className="text-xs text-rose-800">{testimonial.anniversary}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -902,23 +990,80 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
         </div>
       </section>
 
+      {/* SEO Expanded Content — 700+ unique words */}
+      <section className="py-16 bg-amber-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto prose prose-lg">
+            {seoContent.paragraphs.map((section, idx) => (
+              <div key={`seo-${idx}`} className="mb-8">
+                <h3 className="text-xl font-bold mb-4 text-rose-900">{section.heading}</h3>
+                <p className="text-gray-600 leading-relaxed">{section.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI-Friendly Service Summary — structured for AI crawlers */}
+      <section aria-label="Service Summary" className="py-12 bg-amber-50">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-2xl font-bold mb-6 font-serif text-center text-rose-900">
+            {keyword.title} — Quick Overview
+          </h2>
+          <dl className="grid md:grid-cols-2 gap-x-8 gap-y-4 text-sm">
+            <div>
+              <dt className="font-semibold text-gray-900">Service</dt>
+              <dd className="text-gray-600">{keyword.title}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-900">Location</dt>
+              <dd className="text-gray-600">Vadodara, Gujarat, India</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-900">Venue</dt>
+              <dd className="text-gray-600">{siteConfig.name}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-900">Price Range</dt>
+              <dd className="text-gray-600">₹4,700 – ₹14,900</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-900">Duration</dt>
+              <dd className="text-gray-600">3 Hours Private Celebration</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-900">Includes</dt>
+              <dd className="text-gray-600">Decorations, Cake, Music, Romantic Setup</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-900">Booking</dt>
+              <dd className="text-gray-600">WhatsApp, Phone, or Online Form</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-900">Contact</dt>
+              <dd className="text-gray-600">{siteConfig.phone}</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
       {/* FAQ Section */}
-      <section className="py-16 bg-white">
+      <section aria-label="Frequently Asked Questions" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
-              <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+              <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
                 FAQ
               </Badge>
-              <h2 className="text-2xl md:text-3xl font-bold text-rose-800">
+              <h2 className="text-2xl md:text-3xl font-bold text-rose-900">
                 Frequently Asked Questions About {keyword.title}
               </h2>
             </div>
             
             <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="border-rose-100">
-                  <AccordionTrigger className="text-left hover:text-rose-600">
+              {allFAQs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`} className="border-amber-100">
+                  <AccordionTrigger className="text-left hover:text-rose-800">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
@@ -932,14 +1077,14 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
       </section>
 
       {/* Related Services */}
-      <section className="py-16 bg-rose-50">
+      <section className="py-16 bg-amber-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <Sparkles className="w-3 h-3 mr-1" />
               Related Services
             </Badge>
-            <h2 className="text-2xl md:text-3xl font-bold text-rose-800">
+            <h2 className="text-2xl md:text-3xl font-bold text-rose-900">
               Explore More Anniversary Services
             </h2>
           </div>
@@ -948,9 +1093,9 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
               <Link 
                 key={index}
                 href={`/${kw.slug}`}
-                className="block p-4 rounded-lg border border-rose-200 bg-white hover:border-rose-400 hover:bg-rose-50 transition-all group text-center"
+                className="block p-4 rounded-lg border border-amber-200 bg-white hover:border-amber-500 hover:bg-amber-50 transition-all group text-center"
               >
-                <h3 className="font-medium text-sm group-hover:text-rose-600 transition-colors">
+                <h3 className="font-medium text-sm group-hover:text-rose-800 transition-colors">
                   {kw.title}
                 </h3>
               </Link>
@@ -960,14 +1105,14 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
       </section>
 
       {/* Areas We Serve */}
-      <section className="py-16 bg-white">
+      <section aria-label="Areas We Serve" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+            <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
               <MapPin className="w-3 h-3 mr-1" />
               Areas
             </Badge>
-            <h2 className="text-2xl md:text-3xl font-bold text-rose-800">
+            <h2 className="text-2xl md:text-3xl font-bold text-rose-900">
               {keyword.title} Across Vadodara
             </h2>
             <p className="text-muted-foreground mt-4">
@@ -979,7 +1124,7 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
               <Link 
                 key={index}
                 href={`/${area.slug}`}
-                className="px-4 py-2 rounded-full border border-rose-200 bg-white text-sm hover:bg-rose-100 hover:border-rose-300 transition-all"
+                className="px-4 py-2 rounded-full border border-amber-200 bg-white text-sm hover:bg-amber-100 hover:border-amber-300 transition-all"
               >
                 {area.name}
               </Link>
@@ -989,39 +1134,39 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
       </section>
 
       {/* Contact & Location */}
-      <section className="py-16 bg-rose-50">
+      <section aria-label="Contact and Location" className="py-16 bg-amber-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <Badge className="mb-4 bg-rose-100 text-rose-700 border-rose-200">
+              <Badge className="mb-4 bg-amber-100 text-rose-900 border-amber-200">
                 <MapPin className="w-3 h-3 mr-1" />
                 Contact Us
               </Badge>
-              <h2 className="text-2xl md:text-3xl font-bold text-rose-800">
+              <h2 className="text-2xl md:text-3xl font-bold text-rose-900">
                 Book Your {keyword.title} in Vadodara
               </h2>
             </div>
             
-            <Card className="border-rose-100">
+            <Card className="border-amber-100">
               <CardContent className="pt-6">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
                     <div className="flex items-start gap-4 mb-6">
-                      <MapPin className="w-6 h-6 text-rose-500 flex-shrink-0 mt-1" />
+                      <MapPin className="w-6 h-6 text-amber-500 flex-shrink-0 mt-1" />
                       <div>
                         <h3 className="font-semibold mb-2">Our Location</h3>
                         <p className="text-muted-foreground text-sm">{siteConfig.address}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4 mb-6">
-                      <Phone className="w-6 h-6 text-rose-500 flex-shrink-0 mt-1" />
+                      <Phone className="w-6 h-6 text-amber-500 flex-shrink-0 mt-1" />
                       <div>
                         <h3 className="font-semibold mb-2">Phone</h3>
                         <p className="text-muted-foreground text-sm">{siteConfig.phone}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
-                      <Clock className="w-6 h-6 text-rose-500 flex-shrink-0 mt-1" />
+                      <Clock className="w-6 h-6 text-amber-500 flex-shrink-0 mt-1" />
                       <div>
                         <h3 className="font-semibold mb-2">Hours</h3>
                         <p className="text-muted-foreground text-sm">5:00 PM - 11:00 PM (By Appointment)</p>
@@ -1031,7 +1176,7 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
                   <div className="flex flex-col gap-4">
                     <Button 
                       size="lg"
-                      className="bg-rose-500 hover:bg-rose-600 text-white"
+                      className="bg-amber-500 hover:bg-rose-800 text-white"
                       onClick={() => setIsBookingOpen(true)}
                     >
                       <Calendar className="mr-2 h-5 w-5" />
@@ -1044,7 +1189,7 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
                       </Button>
                     </Link>
                     <Link href={`tel:${siteConfig.phone}`}>
-                      <Button size="lg" variant="outline" className="w-full border-rose-300 text-rose-600 hover:bg-rose-50">
+                      <Button size="lg" variant="outline" className="w-full border-amber-300 text-rose-800 hover:bg-amber-50">
                         <Phone className="mr-2 h-5 w-5" />
                         Call {siteConfig.phone}
                       </Button>
@@ -1058,26 +1203,26 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-rose-600 via-pink-600 to-rose-700 text-white">
+      <section aria-label="Book Your Anniversary" className="py-20 bg-gradient-to-r from-rose-800 via-amber-600 to-rose-900 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-4xl font-bold mb-4">
             Ready to Book Your {keyword.title}?
           </h2>
-          <p className="text-rose-100 mb-8 max-w-2xl mx-auto text-lg">
+          <p className="text-amber-100 mb-8 max-w-2xl mx-auto text-lg">
             Let us create a magical celebration that honors your love story. 
             Book now and make your anniversary unforgettable in Vadodara.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button 
               size="lg" 
-              className="bg-white text-rose-600 hover:bg-rose-50 px-8 py-6 text-lg rounded-full"
+              className="bg-white text-rose-800 hover:bg-amber-50 px-8 py-6 text-lg rounded-full"
               onClick={() => setIsBookingOpen(true)}
             >
               <Calendar className="mr-2 h-5 w-5" />
               Book Your Celebration
             </Button>
             <Link href={`tel:${siteConfig.phone}`}>
-              <Button size="lg" className="bg-rose-800 hover:bg-rose-900 px-8 py-6 text-lg rounded-full">
+              <Button size="lg" className="bg-rose-900 hover:bg-rose-950 px-8 py-6 text-lg rounded-full">
                 <Phone className="mr-2 h-5 w-5" />
                 Call {siteConfig.phone}
               </Button>
@@ -1085,6 +1230,45 @@ export default function AnniversaryKeywordPage({ keyword }: AnniversaryKeywordPa
           </div>
         </div>
       </section>
+
+      {/* FAQ Schema JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchemaMarkup) }}
+      />
+
+      {/* Breadcrumb Schema JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBreadcrumbSchema(buildKeywordBreadcrumbs(
+            siteConfig.website,
+            siteConfig.name,
+            keyword.title,
+            `${siteConfig.website}/${keyword.slug}`
+          )))
+        }}
+      />
+
+      {/* Service Schema JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateServiceSchema({
+            serviceName: `${keyword.title} in Vadodara`,
+            serviceUrl: `${siteConfig.website}/${keyword.slug}`,
+            serviceDescription: `Best ${keyword.title.toLowerCase()} service in Vadodara. Private romantic celebration venue with elegant decorations, candlelight dinner setup, and personalized anniversary experience.`,
+            providerName: siteConfig.name,
+            providerUrl: siteConfig.website,
+            providerPhone: siteConfig.phone,
+            providerAddress: siteConfig.address,
+            providerCity: siteConfig.city,
+            areaServed: 'Vadodara',
+            priceRange: '₹4700 - ₹14900',
+          }))
+        }}
+      />
+      </main>
 
       <FFCFooter />
       <FFCBookingForm open={isBookingOpen} onOpenChange={setIsBookingOpen} />

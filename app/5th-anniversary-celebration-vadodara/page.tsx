@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     description: 'Five years of putting down roots. Celebrate your wood anniversary with rustic elegance.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/5th-anniversary-celebration-vadodara',
+  },
 };
 
 const woodAnniversarySignificance = {

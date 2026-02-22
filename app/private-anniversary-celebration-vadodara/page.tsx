@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'Complete privacy for your special day. Exclusive venues with no other guests.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/private-anniversary-celebration-vadodara',
+  },
 };
 
 const privacyBenefits = [

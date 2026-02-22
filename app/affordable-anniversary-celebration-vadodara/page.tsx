@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'Beautiful celebrations don\'t have to be expensive. Budget-friendly packages from ₹1,999.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/affordable-anniversary-celebration-vadodara',
+  },
 };
 
 const affordablePhilosophy = {

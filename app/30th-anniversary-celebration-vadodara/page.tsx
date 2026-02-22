@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     description: 'Three decades of rare beauty. Celebrate your pearl anniversary with elegance.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/30th-anniversary-celebration-vadodara',
+  },
 };
 
 const pearlSignificance = {

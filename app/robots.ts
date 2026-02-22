@@ -1,6 +1,6 @@
 /**
  * ANNIVERSARY CELEBRATION VADODARA - SEO OPTIMIZED ROBOTS.TXT
- * Domain: anniversarycelebrationvadodara.com
+ * Domain: anniversarydinnervadodara.com
  * 
  * Configuration for search engine crawlers:
  * - Allow all public pages
@@ -13,7 +13,7 @@
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://anniversarycelebrationvadodara.com";
+  const baseUrl = "https://anniversarydinnervadodara.com";
   
   return {
     rules: [
@@ -25,8 +25,6 @@ export default function robots(): MetadataRoute.Robots {
           "/api/",
           "/admin/",
           "/private/",
-          "/_next/",
-          "/*.json$",
         ],
       },
       {

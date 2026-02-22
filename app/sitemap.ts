@@ -1,12 +1,12 @@
 /**
  * ANNIVERSARY CELEBRATION VADODARA - SEO OPTIMIZED SITEMAP
- * Domain: anniversarycelebrationvadodara.com
+ * Domain: anniversarydinnervadodara.com
  * 
- * Total Pages: 58 including:
+ * Total Pages: 90 including:
  * - 1 Homepage (priority 1.0)
  * - 2 Static pages (about, contact) (priority 0.8)
  * - 1 Areas index page (priority 0.8)
- * - 30 Keyword pages (priority 0.9) - Main SEO pages
+ * - 62 Keyword pages (priority 0.9) - Main SEO pages (30 original + 32 couple-focused)
  * - 24 Vadodara Area pages (priority 0.85)
  * 
  * Last Updated: January 2026
@@ -15,7 +15,7 @@
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://anniversarycelebrationvadodara.com";
+  const baseUrl = "https://anniversarydinnervadodara.com";
   const currentDate = new Date().toISOString();
   
   const entries: MetadataRoute.Sitemap = [];
@@ -76,6 +76,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'rooftop-anniversary-vadodara',
     'surprise-anniversary-party-vadodara',
     'wedding-anniversary-party-vadodara',
+    // Couple-focused anniversary pages
+    'anniversary-surprise-for-partner-vadodara',
+    'anniversary-couple-dinner-vadodara',
+    'anniversary-date-ideas-vadodara',
+    'anniversary-couple-experience-vadodara',
+    'intimate-anniversary-dinner-vadodara',
+    'anniversary-dinner-for-two-vadodara',
+    'anniversary-celebration-with-cake-vadodara',
+    'anniversary-celebration-with-flowers-vadodara',
+    'anniversary-celebration-with-music-vadodara',
+    'anniversary-under-stars-vadodara',
+    'anniversary-for-newlyweds-vadodara',
+    'anniversary-couple-photoshoot-vadodara',
+    'anniversary-love-celebration-vadodara',
+    'anniversary-couple-package-vadodara',
+    'anniversary-couple-venue-vadodara',
+    'anniversary-date-plan-vadodara',
+    'romantic-anniversary-evening-vadodara',
+    'anniversary-dinner-with-decoration-vadodara',
+    'anniversary-moonlight-dinner-vadodara',
+    'anniversary-fairy-light-setup-vadodara',
+    'anniversary-rooftop-dinner-vadodara',
+    'anniversary-surprise-for-soulmate-vadodara',
+    'anniversary-candlelight-setup-vadodara',
+    'anniversary-special-evening-vadodara',
+    'first-month-anniversary-celebration-vadodara',
+    '2nd-anniversary-celebration-vadodara',
+    '3rd-anniversary-celebration-vadodara',
+    '7th-anniversary-celebration-vadodara',
+    '40th-anniversary-celebration-vadodara',
+    'anniversary-dinner-booking-vadodara',
+    'anniversary-celebration-near-me-vadodara',
+    'couple-anniversary-celebration-vadodara',
   ];
 
   keywordPages.forEach((slug) => {

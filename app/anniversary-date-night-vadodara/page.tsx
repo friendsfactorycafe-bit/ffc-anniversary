@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: 'An evening designed for just the two of you. Candlelight, cuisine, and connection.',
     type: 'website',
   },
+  alternates: {
+    canonical: '/anniversary-date-night-vadodara',
+  },
 };
 
 const dateNightSlots = [
